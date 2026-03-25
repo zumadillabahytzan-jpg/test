@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Korkyt Ata Kyzylorda University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #003366;
+    --navy-dark: #002244;
+    --gold: #C9A227;
+    --gold-light: #e8bc3a;
+    --bg: #F8F9FA;
+    --bg-white: #ffffff;
+    --text: #1A1A1A;
+    --text-muted: #555;
+    --border: #dde3ec;
+    --shadow: 0 4px 24px rgba(0,51,102,0.10);
+    --shadow-hover: 0 8px 36px rgba(0,51,102,0.18);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Source Sans 3', 'Segoe UI', sans-serif;
+    --radius: 6px;
+    --transition: 0.22s ease;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); color: var(--text); background: var(--bg); font-size: 15px; line-height: 1.6; }
+
+  /* Mobile nav always hidden unless .open */
+  .mobile-nav { display: none !important; }
+  .mobile-nav.open { display: block !important; }
+
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+  button { cursor: pointer; border: none; background: none; font-family: var(--sans); }
+
+  /* ========== TOP BAR ========== */
+  .topbar {
+    background: var(--navy-dark);
+    color: #b5c6dc;
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+  }
+  .topbar-inner {
+    max-width: 1360px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between; height: 36px;
+  }
+  .topbar-lang a {
+    color: #b5c6dc; padding: 0 6px; font-weight: 600;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .topbar-lang a:last-child { border-right: none; }
+  .topbar-lang a:hover, .topbar-lang a.active { color: var(--gold); }
+  .topbar-right { display: flex; align-items: center; gap: 18px; }
+  .topbar-right a:hover { color: var(--gold); }
+  .topbar-socials { display: flex; gap: 12px; border-left: 1px solid rgba(255,255,255,0.15); padding-left: 14px; }
+  .topbar-socials a { font-size: 14px; opacity: 0.75; transition: opacity var(--transition), color var(--transition); }
+  .topbar-socials a:hover { opacity: 1; color: var(--gold); }
+
+  /* ========== HEADER ========== */
+  .site-header {
+    background: var(--bg-white);
+    border-bottom: 3px solid var(--gold);
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 2px 16px rgba(0,51,102,0.08);
+  }
+  .header-inner {
+    max-width: 1360px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between; height: 76px;
+  }
+  .logo { display: flex; align-items: center; gap: 14px; }
+  .logo-icon {
+    width: 52px; height: 52px; background: var(--navy);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-icon svg { fill: var(--gold); width: 30px; height: 30px; }
+  .logo-text { line-height: 1.2; }
+  .logo-text span { display: block; }
+  .logo-title { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; }
+  .logo-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* NAV */
+  .main-nav { display: flex; align-items: center; gap: 2px; }
+  .nav-item { position: relative; }
+  .nav-link {
+    display: flex; align-items: center; gap: 4px;
+    padding: 28px 13px; font-size: 13.5px; font-weight: 600;
+    color: var(--navy); letter-spacing: 0.01em; white-space: nowrap;
+    transition: color var(--transition);
+  }
+  .nav-link svg { width: 10px; height: 10px; fill: currentColor; transition: transform var(--transition); }
+  .nav-item:hover .nav-link { color: var(--gold); }
+  .nav-item:hover .nav-link svg { transform: rotate(180deg); }
+
+  /* MEGA MENU */
+  .mega-menu {
+    display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    background: var(--bg-white); border-top: 3px solid var(--gold);
+    box-shadow: 0 12px 48px rgba(0,51,102,0.16);
+    min-width: 580px; padding: 28px 32px; z-index: 999;
+    border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .mega-menu.wide { min-width: 780px; }
+  .nav-item:hover .mega-menu { display: flex; flex-wrap: wrap; gap: 0; }
+  .mega-col { flex: 1; min-width: 180px; padding-right: 24px; }
+  .mega-col-title {
+    font-family: var(--serif); font-size: 13px; font-weight: 700; color: var(--navy);
+    text-transform: uppercase; letter-spacing: 0.08em; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border); margin-bottom: 12px;
+  }
+  .mega-menu a {
+    display: block; padding: 5px 0; font-size: 13px; color: var(--text-muted);
+    transition: color var(--transition), padding-left var(--transition);
+  }
+  .mega-menu a:hover { color: var(--navy); padding-left: 6px; }
+
+  /* simple dropdown */
+  .dropdown {
+    display: none; position: absolute; top: 100%; left: 0;
+    background: var(--bg-white); border-top: 3px solid var(--gold);
+    box-shadow: 0 12px 40px rgba(0,51,102,0.14); min-width: 220px;
+    padding: 12px 0; border-radius: 0 0 var(--radius) var(--radius); z-index: 999;
+  }
+  .nav-item:hover .dropdown { display: block; }
+  .dropdown a { display: block; padding: 8px 22px; font-size: 13px; color: var(--text-muted); transition: all var(--transition); }
+  .dropdown a:hover { color: var(--navy); background: #f0f4f8; padding-left: 28px; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+  .hamburger span { width: 26px; height: 2px; background: var(--navy); border-radius: 2px; transition: all 0.3s; }
+
+  /* ========== HERO ========== */
+  .hero { position: relative; height: 86vh; min-height: 520px; max-height: 760px; overflow: hidden; }
+  .hero-slides { position: absolute; inset: 0; }
+  .hero-slide {
+    position: absolute; inset: 0; opacity: 0;
+    transition: opacity 1.2s ease;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(0,33,66,0.82) 0%, rgba(0,33,66,0.50) 55%, rgba(0,33,66,0.20) 100%);
+  }
+  .hero-content {
+    position: absolute; inset: 0; display: flex; align-items: center;
+    max-width: 1360px; margin: 0 auto; left: 0; right: 0; padding: 0 60px;
+  }
+  .hero-text { max-width: 620px; color: #fff; }
+  .hero-eyebrow {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 16px;
+  }
+  .hero-title {
+    font-family: var(--serif); font-size: clamp(32px, 4.5vw, 58px);
+    font-weight: 700; line-height: 1.15; margin-bottom: 20px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  }
+  .hero-sub { font-size: 16px; color: rgba(255,255,255,0.82); margin-bottom: 34px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy-dark);
+    padding: 13px 30px; font-size: 14px; font-weight: 700;
+    border-radius: var(--radius); transition: all var(--transition);
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,162,39,0.35); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.7); color: #fff;
+    padding: 11px 28px; font-size: 14px; font-weight: 600;
+    border-radius: var(--radius); transition: all var(--transition);
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+
+  .hero-dots {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 8px;
+  }
+  .hero-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.4); transition: all var(--transition);
+    cursor: pointer;
+  }
+  .hero-dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
+  .hero-arrows {
+    position: absolute; bottom: 20px; right: 40px; display: flex; gap: 8px;
+  }
+  .hero-arr {
+    width: 38px; height: 38px; border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: #fff; cursor: pointer; transition: all var(--transition);
+    background: rgba(0,0,0,0.2);
+  }
+  .hero-arr:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .hero-arr svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+
+  /* ========== SECTIONS ========== */
+  section { padding: 72px 0; }
+  .container { max-width: 1360px; margin: 0 auto; padding: 0 24px; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-eyebrow {
+    font-size: 11.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700; color: var(--navy); line-height: 1.25;
+    position: relative; display: inline-block; padding-bottom: 16px;
+  }
+  .section-title::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 52px; height: 3px; background: var(--gold); border-radius: 2px;
+  }
+
+  /* ========== EDUCATION CARDS ========== */
+  .edu-section { background: var(--bg-white); }
+  .edu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .edu-card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 32px 24px; text-align: center;
+    transition: all var(--transition); background: var(--bg-white);
+    position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 4px; background: var(--gold); transform: scaleX(0);
+    transition: transform var(--transition); transform-origin: left;
+  }
+  .edu-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+  .edu-card:hover::before { transform: scaleX(1); }
+  .edu-icon {
+    width: 64px; height: 64px; background: #eef2f7; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px; transition: background var(--transition);
+  }
+  .edu-card:hover .edu-icon { background: var(--navy); }
+  .edu-icon svg { width: 28px; height: 28px; stroke: var(--navy); fill: none; transition: stroke var(--transition); }
+  .edu-card:hover .edu-icon svg { stroke: var(--gold); }
+  .edu-card h3 { font-family: var(--serif); font-size: 19px; color: var(--navy); margin-bottom: 10px; }
+  .edu-card p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+  .btn-ghost {
+    font-size: 13px; font-weight: 600; color: var(--navy);
+    border: 1.5px solid var(--navy); padding: 8px 20px; border-radius: var(--radius);
+    transition: all var(--transition); display: inline-block;
+  }
+  .btn-ghost:hover { background: var(--navy); color: #fff; }
+
+  /* ========== INSTITUTES ========== */
+  .institutes { background: #f0f4f9; }
+  .institutes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .inst-card {
+    border-radius: var(--radius); overflow: hidden; position: relative;
+    height: 220px; cursor: pointer; box-shadow: var(--shadow);
+    transition: box-shadow var(--transition);
+  }
+  .inst-card:hover { box-shadow: var(--shadow-hover); }
+  .inst-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+  .inst-card:hover img { transform: scale(1.05); }
+  .inst-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,33,66,0.85) 0%, rgba(0,33,66,0.35) 55%, transparent 100%);
+    transition: background 0.3s;
+  }
+  .inst-card:hover .inst-overlay { background: linear-gradient(to top, rgba(0,33,66,0.92) 0%, rgba(0,33,66,0.6) 65%, rgba(0,33,66,0.2) 100%); }
+  .inst-content {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 18px 20px;
+  }
+  .inst-num { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  .inst-name { font-family: var(--serif); color: #fff; font-size: 16px; font-weight: 600; line-height: 1.3; }
+  .inst-arrow {
+    display: none; font-size: 12px; color: var(--gold); margin-top: 8px;
+    font-weight: 600; letter-spacing: 0.05em;
+  }
+  .inst-card:hover .inst-arrow { display: block; }
+
+  /* ========== NEWS ========== */
+  .news-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 36px; }
+  .news-card {
+    background: var(--bg-white); border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); transition: all var(--transition);
+  }
+  .news-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .news-img { height: 170px; overflow: hidden; }
+  .news-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .news-card:hover .news-img img { transform: scale(1.06); }
+  .news-body { padding: 18px; }
+  .news-date { font-size: 11.5px; color: var(--gold); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .news-title { font-family: var(--serif); font-size: 15px; color: var(--navy); line-height: 1.45; margin-bottom: 10px; }
+  .news-more { font-size: 12.5px; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
+  .news-more:hover { color: var(--navy); }
+  .center-btn { text-align: center; }
+  .btn-navy {
+    background: var(--navy); color: #fff;
+    padding: 12px 34px; font-size: 14px; font-weight: 600;
+    border-radius: var(--radius); transition: all var(--transition); display: inline-block;
+  }
+  .btn-navy:hover { background: var(--navy-dark); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,51,102,0.3); }
+
+  /* ========== ANNOUNCEMENTS ========== */
+  .announcements { background: var(--navy); }
+  .announcements .section-title { color: #fff; }
+  .announcements .section-title::after { background: var(--gold); }
+  .announcements .section-eyebrow { color: var(--gold); }
+  .ann-slider-wrap { position: relative; overflow: hidden; }
+  .ann-track { display: flex; gap: 20px; transition: transform 0.5s ease; }
+  .ann-card {
+    min-width: calc(25% - 15px); background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius);
+    padding: 24px 20px; flex-shrink: 0; transition: background var(--transition);
+    cursor: pointer;
+  }
+  .ann-card:hover { background: rgba(255,255,255,0.13); }
+  .ann-date { font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .ann-title { color: #fff; font-size: 14px; line-height: 1.5; font-family: var(--serif); }
+  .ann-controls { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 28px; }
+  .ann-btn {
+    width: 38px; height: 38px; border: 1.5px solid rgba(255,255,255,0.3);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: #fff; cursor: pointer; transition: all var(--transition);
+  }
+  .ann-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .ann-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; }
+  .btn-outline-gold {
+    border: 1.5px solid var(--gold); color: var(--gold);
+    padding: 10px 28px; font-size: 13.5px; font-weight: 600;
+    border-radius: var(--radius); transition: all var(--transition); display: inline-block;
+  }
+  .btn-outline-gold:hover { background: var(--gold); color: var(--navy); }
+
+  /* ========== COUNTERS ========== */
+  .counters { background: var(--bg-white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 60px 0; }
+  .counters-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .counter-item {
+    text-align: center; padding: 24px 16px;
+    border-right: 1px solid var(--border);
+  }
+  .counter-item:last-child { border-right: none; }
+  .counter-num {
+    font-family: var(--serif); font-size: clamp(38px, 5vw, 58px);
+    font-weight: 700; color: var(--navy); line-height: 1; margin-bottom: 8px;
+  }
+  .counter-num span { color: var(--gold); }
+  .counter-label { font-size: 13.5px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.02em; }
+
+  /* ========== PARTNERS ========== */
+  .partners { background: var(--bg); }
+  .partners-track-wrap { overflow: hidden; position: relative; }
+  .partners-track-wrap::before, .partners-track-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+    pointer-events: none;
+  }
+  .partners-track-wrap::before { left: 0; background: linear-gradient(to right, var(--bg), transparent); }
+  .partners-track-wrap::after { right: 0; background: linear-gradient(to left, var(--bg), transparent); }
+  .partners-track {
+    display: flex; gap: 32px; align-items: center;
+    animation: scrollPartners 22s linear infinite;
+  }
+  .partners-track:hover { animation-play-state: paused; }
+  @keyframes scrollPartners {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .partner-logo {
+    flex-shrink: 0;
+    width: 140px; height: 60px; background: var(--bg-white);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    text-align: center; padding: 8px; transition: all var(--transition);
+    letter-spacing: 0.03em;
+  }
+  .partner-logo:hover { border-color: var(--gold); color: var(--navy); box-shadow: var(--shadow); }
+
+  /* ========== SERVICES ========== */
+  .services { background: var(--bg-white); }
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .service-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 28px 20px; text-align: center; transition: all var(--transition); cursor: pointer;
+  }
+  .service-card:hover { background: var(--navy); border-color: var(--navy); transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+  .service-icon {
+    width: 56px; height: 56px; background: #e8edf5; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+    transition: background var(--transition);
+  }
+  .service-card:hover .service-icon { background: rgba(201,162,39,0.2); }
+  .service-icon svg { width: 26px; height: 26px; stroke: var(--navy); fill: none; transition: stroke var(--transition); }
+  .service-card:hover .service-icon svg { stroke: var(--gold); }
+  .service-name {
+    font-size: 14px; font-weight: 700; color: var(--navy);
+    transition: color var(--transition); margin-bottom: 4px;
+  }
+  .service-card:hover .service-name { color: #fff; }
+  .service-sub { font-size: 11.5px; color: var(--text-muted); transition: color var(--transition); }
+  .service-card:hover .service-sub { color: rgba(255,255,255,0.6); }
+
+  /* ========== FOOTER ========== */
+  .footer { background: var(--navy-dark); color: rgba(255,255,255,0.75); }
+  .footer-main {
+    max-width: 1360px; margin: 0 auto; padding: 56px 24px 36px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 40px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .footer-logo-icon {
+    width: 44px; height: 44px; background: rgba(255,255,255,0.08);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  }
+  .footer-logo-icon svg { fill: var(--gold); width: 24px; height: 24px; }
+  .footer-brand { font-family: var(--serif); font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .footer-desc { font-size: 13px; line-height: 1.7; margin-bottom: 20px; }
+  .footer-contact-item { font-size: 13px; margin-bottom: 8px; display: flex; gap: 8px; align-items: flex-start; }
+  .footer-contact-item svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; flex-shrink: 0; margin-top: 2px; }
+  .footer-col h4 {
+    font-family: var(--serif); font-size: 15px; font-weight: 700; color: #fff;
+    margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 8px; }
+  .footer-links a { font-size: 13px; transition: color var(--transition); }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-socials { display: flex; gap: 10px; margin-top: 16px; }
+  .footer-social {
+    width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    transition: all var(--transition); font-size: 14px;
+  }
+  .footer-social:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .footer-map { border-radius: var(--radius); overflow: hidden; height: 160px; background: rgba(255,255,255,0.05); }
+  .footer-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(30%); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 18px 24px; text-align: center;
+    font-size: 12.5px; max-width: 1360px; margin: 0 auto;
+  }
+  .footer-bottom span { color: var(--gold); }
+
+  /* ========== MOBILE ========== */
+  @media (max-width: 1100px) {
+    .main-nav { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg-white); z-index: 2000; overflow-y: auto;
+      padding: 20px;
+    }
+    .mobile-nav.open { display: block; }
+    /* Force hidden on desktop regardless */
+    .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .mobile-nav-close { font-size: 24px; color: var(--navy); cursor: pointer; }
+    .mobile-nav-item { border-bottom: 1px solid var(--border); }
+    .mobile-nav-link { display: block; padding: 14px 4px; font-size: 15px; font-weight: 600; color: var(--navy); }
+    .mobile-sub { padding: 0 0 12px 16px; }
+    .mobile-sub a { display: block; padding: 6px 0; font-size: 13.5px; color: var(--text-muted); }
+  }
+  @media (max-width: 900px) {
+    .edu-grid { grid-template-columns: repeat(2, 1fr); }
+    .institutes-grid { grid-template-columns: repeat(2, 1fr); }
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+    .counters-grid { grid-template-columns: repeat(2, 1fr); }
+    .counter-item:nth-child(2) { border-right: none; }
+    .counter-item:nth-child(3) { border-right: 1px solid var(--border); }
+    .services-grid { grid-template-columns: repeat(4, 1fr); }
+    .footer-main { grid-template-columns: 1fr 1fr; }
+    .ann-card { min-width: calc(50% - 10px); }
+    .topbar-right { gap: 10px; font-size: 11.5px; }
+  }
+  @media (max-width: 640px) {
+    .edu-grid, .institutes-grid, .news-grid, .services-grid { grid-template-columns: 1fr 1fr; }
+    .counters-grid { grid-template-columns: 1fr 1fr; }
+    .footer-main { grid-template-columns: 1fr; }
+    .hero-content { padding: 0 24px; }
+    .topbar-right .topbar-links { display: none; }
+    .ann-card { min-width: calc(100% - 0px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-lang">
+      <a href="#" class="active">KZ</a>
+      <a href="#">RU</a>
+      <a href="#">EN</a>
+    </div>
+    <div class="topbar-right topbar-links" style="display:flex;">
+      <a href="#">Сайт картасы</a>
+      <a href="#">Комплаенс қызметі</a>
+      <a href="#">Байланыс</a>
+      <a href="#">Helpdesk</a>
+      <div class="topbar-socials">
+        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="#" title="VK"><i class="fab fa-vk"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 4 L36 14 L36 28 L20 36 L4 28 L4 14 Z"/>
+          <circle cx="20" cy="20" r="5" fill="#002244"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">Korkyt Ata University</span>
+        <span class="logo-sub">Kyzylorda · Founded 1951</span>
+      </div>
+    </a>
+
+    <nav class="main-nav">
+      <!-- Университет -->
+      <div class="nav-item">
+        <a href="#" class="nav-link">Университет <svg viewBox="0 0 10 10"><path d="M1 3L5 7L9 3"/></svg></a>
+        <div class="mega-menu wide">
+          <div class="mega-col">
+            <div class="mega-col-title">Басқару</div>
+            <a href="#">Университет Басқарма</a>
+            <a href="#">Университет миссиясы</a>
+            <a href="#">Даму бағдарламасы</a>
+            <a href="#">Корпоративтік басқару</a>
+            <a href="#">Ректор блогы</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-col-title">Сапа</div>
+            <a href="#">Аккредиттеу</a>
+            <a href="#">Рейтингтердегі позициялар</a>
+            <a href="#">Ішкі құжаттар тізілімі</a>
+            <a href="#">Сапаны қамтамасыз ету саясаты</a>
+            <a href="#">Тәуекелдердің жиынтық картасы</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-col-title">Инфрақұрылым</div>
+            <a href="#">Түлектерге</a>
+            <a href="#">Құрылымы</a>
+            <a href="#">Материалдық-техникалық база</a>
+            <a href="#">Кадрлық резерв</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Білім беру -->
+      <div class="nav-item">
+        <a href="#" class="nav-link">Білім беру <svg viewBox="0 0 10 10"><path d="M1 3L5 7L9 3"/></svg></a>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <div class="mega-col-title">Бағдарламалар</div>
+            <a href="#">Бакалавриат</a>
+            <a href="#">Магистратура</a>
+            <a href="#">Докторантура</a>
+            <a href="#">Қашықтан оқыту</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-col-title">Қосымша</div>
+            <a href="#">Институттар</a>
+            <a href="#">Мамандықтар тізімі</a>
+            <a href="#">Оқу жоспарлары</a>
+            <a href="#">Силлабустар</a>
+            <a href="#">Академиялық күнтізбе</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ғылым -->
+      <div class="nav-item">
+        <a href="#" class="nav-link">Ғылым <svg viewBox="0 0 10 10"><path d="M1 3L5 7L9 3"/></svg></a>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <div class="mega-col-title">Зерттеулер</div>
+            <a href="#">Ғылыми жобалар</a>
+            <a href="#">Конференциялар</a>
+            <a href="#">Журналдар мен жинақтар</a>
+            <a href="#">Патенттер</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-col-title">Инновация</div>
+            <a href="#">Ғылыми-зерттеу институттары</a>
+            <a href="#">Стартап & Технопарк</a>
+            <a href="#">Гранттар</a>
+            <a href="#">Ғылыми-зерттеу лабораториялар</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Студентке -->
+      <div class="nav-item">
+        <a href="#" class="nav-link">Студентке <svg viewBox="0 0 10 10"><path d="M1 3L5 7L9 3"/></svg></a>
+        <div class="mega-menu">
+          <div class="mega-col">
+            <div class="mega-col-title">Оқу процесі</div>
+            <a href="#">Сабақ кестесі</a>
+            <a href="#">Сессия</a>
+            <a href="#">Тәжірибе</a>
+            <a href="#">Академиялық ұтқырлық</a>
+          </div>
+          <div class="mega-col">
+            <div class="mega-col-title">Өмір</div>
+            <a href="#">Жатақхана</a>
+            <a href="#">Тамақтану</a>
+            <a href="#">Студенттік клубтар</a>
+            <a href="#">Спорт</a>
+            <a href="#">Психологиялық қолдау</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Халықаралық -->
+      <div class="nav-item">
+        <a href="#" class="nav-link">Халықаралық <svg viewBox="0 0 10 10"><path d="M1 3L5 7L9 3"/></svg></a>
+        <div class="dropdown">
+          <a href="#">Серіктес университеттер</a>
+          <a href="#">Erasmus+ бағдарламасы</a>
+          <a href="#">Болашақ стипендиясы</a>
+          <a href="#">Шетелдік студенттерге</a>
+          <a href="#">Халықаралық жобалар</a>
+          <a href="#">MOU келісімдер</a>
+        </div>
+      </div>
+
+      <!-- Медиа -->
+      <div class="nav-item">
+        <a href="#" class="nav-link">Медиа <svg viewBox="0 0 10 10"><path d="M1 3L5 7L9 3"/></svg></a>
+        <div class="dropdown">
+          <a href="#">Жаңалықтар</a>
+          <a href="#">Хабарландырулар</a>
+          <a href="#">Фотогалерея</a>
+          <a href="#">Видеогалерея</a>
+          <a href="#">Баспасөз орталығы</a>
+          <a href="#">KAU TV</a>
+        </div>
+      </div>
+
+      <!-- Талапкерге -->
+      <div class="nav-item">
+        <a href="#" class="nav-link">Талапкерге</a>
+      </div>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-header">
+    <a href="#" class="logo">
+      <span style="font-family:var(--serif);font-size:16px;font-weight:700;color:var(--navy)">Korkyt Ata University</span>
+    </a>
+    <span class="mobile-nav-close" id="mobileClose">&times;</span>
+  </div>
+  <div class="mobile-nav-item"><a class="mobile-nav-link" href="#">Университет</a>
+    <div class="mobile-sub">
+      <a href="#">Басқарма</a><a href="#">Миссия</a><a href="#">Аккредиттеу</a><a href="#">Ректор блогы</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item"><a class="mobile-nav-link" href="#">Білім беру</a>
+    <div class="mobile-sub"><a href="#">Бакалавриат</a><a href="#">Магистратура</a><a href="#">Докторантура</a></div>
+  </div>
+  <div class="mobile-nav-item"><a class="mobile-nav-link" href="#">Ғылым</a></div>
+  <div class="mobile-nav-item"><a class="mobile-nav-link" href="#">Студентке</a></div>
+  <div class="mobile-nav-item"><a class="mobile-nav-link" href="#">Халықаралық</a></div>
+  <div class="mobile-nav-item"><a class="mobile-nav-link" href="#">Медиа</a></div>
+  <div class="mobile-nav-item"><a class="mobile-nav-link" href="#">Талапкерге</a></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-slides">
+    <div class="hero-slide active">
+      <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1600&q=80" alt="University campus">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600&q=80" alt="Students studying">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=80" alt="Lecture hall">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1497366754035-f200968a7aea?w=1600&q=80" alt="Library">
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Қызылорда · Құрылған 1951 жыл</div>
+      <h1 class="hero-title">Korkyt Ata<br>Kyzylorda University</h1>
+      <p class="hero-sub">Білім, ғылым және инновация арқылы болашақты қалыптастырамыз. Өңіріміздің алдыңғы қатарлы университеті.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">Талапкерге</a>
+        <a href="#" class="btn-outline">Білім беру бағдарламалары</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" data-slide="0"></div>
+    <div class="hero-dot" data-slide="1"></div>
+    <div class="hero-dot" data-slide="2"></div>
+    <div class="hero-dot" data-slide="3"></div>
+  </div>
+  <div class="hero-arrows">
+    <div class="hero-arr" id="heroPrev">
+      <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <div class="hero-arr" id="heroNext">
+      <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION CARDS -->
+<section class="edu-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Оқу деңгейлері</div>
+      <h2 class="section-title">Korkyt Ata Kyzylorda университетінде білім алу</h2>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>
+        </div>
+        <h3>Талапкер</h3>
+        <p>Университетке түсу ережелері, мамандықтар және гранттар туралы толық ақпарат.</p>
+        <a href="#" class="btn-ghost">Толығырақ</a>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+        </div>
+        <h3>Бакалавриат</h3>
+        <p>50-ден астам мамандық, заманауи оқу жоспарлары және тәжірибелік дайындық.</p>
+        <a href="#" class="btn-ghost">Толығырақ</a>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Магистратура</h3>
+        <p>Ғылыми және практикалық бағыттағы магистрлік бағдарламалар.</p>
+        <a href="#" class="btn-ghost">Толығырақ</a>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3>Докторантура</h3>
+        <p>PhD және докторлық диссертация дайындау, ғылыми зерттеулер.</p>
+        <a href="#" class="btn-ghost">Толығырақ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUTES -->
+<section class="institutes">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Оқу орындары</div>
+      <h2 class="section-title">Институттар мен факультеттер</h2>
+    </div>
+    <div class="institutes-grid">
+      <div class="inst-card">
+        <img src="https://images.unsplash.com/photo-1532094349884-543559c5f7f6?w=600&q=75" alt="Natural Sciences">
+        <div class="inst-overlay"></div>
+        <div class="inst-content">
+          <div class="inst-num">Институт 01</div>
+          <div class="inst-name">Жаратылыстану институты</div>
+          <div class="inst-arrow">Толығырақ →</div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&q=75" alt="Engineering">
+        <div class="inst-overlay"></div>
+        <div class="inst-content">
+          <div class="inst-num">Институт 02</div>
+          <div class="inst-name">Инженерлі-технологиялық институт</div>
+          <div class="inst-arrow">Толығырақ →</div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=75" alt="Economics & Law">
+        <div class="inst-overlay"></div>
+        <div class="inst-content">
+          <div class="inst-num">Институт 03</div>
+          <div class="inst-name">Экономика және құқық институты</div>
+          <div class="inst-arrow">Толығырақ →</div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=75" alt="Humanities">
+        <div class="inst-overlay"></div>
+        <div class="inst-content">
+          <div class="inst-num">Институт 04</div>
+          <div class="inst-name">Гуманитарлық-педагогикалық институт</div>
+          <div class="inst-arrow">Толығырақ →</div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=75" alt="AI Institute">
+        <div class="inst-overlay"></div>
+        <div class="inst-content">
+          <div class="inst-num">Институт 05</div>
+          <div class="inst-name">Жасанды интеллект институты</div>
+          <div class="inst-arrow">Толығырақ →</div>
+        </div>
+      </div>
+      <div class="inst-card">
+        <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=600&q=75" alt="Pedagogy & Arts">
+        <div class="inst-overlay"></div>
+        <div class="inst-content">
+          <div class="inst-num">Институт 06</div>
+          <div class="inst-name">Педагогика және дәстүрлі өнер институты</div>
+          <div class="inst-arrow">Толығырақ →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section style="background:var(--bg);">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Жаңалықтар</div>
+      <h2 class="section-title">Соңғы жаңалықтар</h2>
+    </div>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=75" alt="News 1"></div>
+        <div class="news-body">
+          <div class="news-date">24 Наурыз 2025</div>
+          <h3 class="news-title">KAU ұлттық рейтингте алдыңғы орынға шықты</h3>
+          <a href="#" class="news-more">Толығырақ оқу →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500&q=75" alt="News 2"></div>
+        <div class="news-body">
+          <div class="news-date">20 Наурыз 2025</div>
+          <h3 class="news-title">Erasmus+ бағдарламасы аясында студент алмасу іске асты</h3>
+          <a href="#" class="news-more">Толығырақ оқу →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img"><img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=500&q=75" alt="News 3"></div>
+        <div class="news-body">
+          <div class="news-date">15 Наурыз 2025</div>
+          <h3 class="news-title">Жасанды интеллект институты жаңа зертхана ашты</h3>
+          <a href="#" class="news-more">Толығырақ оқу →</a>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-img"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500&q=75" alt="News 4"></div>
+        <div class="news-body">
+          <div class="news-date">10 Наурыз 2025</div>
+          <h3 class="news-title">Халықаралық ғылыми конференция сәтті өтті</h3>
+          <a href="#" class="news-more">Толығырақ оқу →</a>
+        </div>
+      </div>
+    </div>
+    <div class="center-btn"><a href="#" class="btn-navy">Барлық жаңалықтар</a></div>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section class="announcements">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Хабарландырулар</div>
+      <h2 class="section-title">Маңызды хабарландырулар</h2>
+    </div>
+    <div class="ann-slider-wrap">
+      <div class="ann-track" id="annTrack">
+        <div class="ann-card"><div class="ann-date">24 Наурыз 2025</div><div class="ann-title">2025-2026 оқу жылына қабылдау науқаны басталады — талапкерлерге арналған ашық есік күні</div></div>
+        <div class="ann-card"><div class="ann-date">22 Наурыз 2025</div><div class="ann-title">Мемлекеттік грант иегерлері үшін жаңа шарттар жарияланды</div></div>
+        <div class="ann-card"><div class="ann-date">18 Наурыз 2025</div><div class="ann-title">Ғылыми жобаларға арналған грант конкурсына өтінімдер қабылдануда</div></div>
+        <div class="ann-card"><div class="ann-date">15 Наурыз 2025</div><div class="ann-title">Академиялық ұтқырлық бағдарламасы — Еуропа университеттеріне жіберіледі</div></div>
+        <div class="ann-card"><div class="ann-date">12 Наурыз 2025</div><div class="ann-title">Жаз семестріне тіркелу 1 сәуірден басталады — мерзімді өткізіп алмаңыз</div></div>
+        <div class="ann-card"><div class="ann-date">10 Наурыз 2025</div><div class="ann-title">Университет кітапханасы жаңа электронды ресурстарды іске қосты</div></div>
+        <!-- duplicates for seamless loop -->
+        <div class="ann-card"><div class="ann-date">24 Наурыз 2025</div><div class="ann-title">2025-2026 оқу жылына қабылдау науқаны басталады — талапкерлерге арналған ашық есік күні</div></div>
+        <div class="ann-card"><div class="ann-date">22 Наурыз 2025</div><div class="ann-title">Мемлекеттік грант иегерлері үшін жаңа шарттар жарияланды</div></div>
+        <div class="ann-card"><div class="ann-date">18 Наурыз 2025</div><div class="ann-title">Ғылыми жобаларға арналған грант конкурсына өтінімдер қабылдануда</div></div>
+        <div class="ann-card"><div class="ann-date">15 Наурыз 2025</div><div class="ann-title">Академиялық ұтқырлық бағдарламасы — Еуропа университеттеріне жіберіледі</div></div>
+        <div class="ann-card"><div class="ann-date">12 Наурыз 2025</div><div class="ann-title">Жаз семестріне тіркелу 1 сәуірден басталады — мерзімді өткізіп алмаңыз</div></div>
+        <div class="ann-card"><div class="ann-date">10 Наурыз 2025</div><div class="ann-title">Университет кітапханасы жаңа электронды ресурстарды іске қосты</div></div>
+      </div>
+    </div>
+    <div class="ann-controls">
+      <div class="ann-btn" id="annPrev"><svg viewBox="0 0 24 24" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></div>
+      <a href="#" class="btn-outline-gold">Барлық хабарландырулар</a>
+      <div class="ann-btn" id="annNext"><svg viewBox="0 0 24 24" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<section class="counters">
+  <div class="container">
+    <div class="counters-grid">
+      <div class="counter-item">
+        <div class="counter-num" data-target="93">0</div>
+        <div class="counter-label">Докторант</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-num" data-target="588">0</div>
+        <div class="counter-label">Магистрант</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-num" data-target="504">0</div>
+        <div class="counter-label">Профессор-оқытушылар құрамы</div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-num" data-target="10360" data-suffix="+">0</div>
+        <div class="counter-label">Бакалавриат студенттері</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="partners">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Ынтымақтастық</div>
+      <h2 class="section-title">Серіктес ұйымдар</h2>
+    </div>
+  </div>
+  <div class="partners-track-wrap">
+    <div class="partners-track" id="partnersTrack">
+      <div class="partner-logo">Nazarbayev University</div>
+      <div class="partner-logo">Болашақ бағд.</div>
+      <div class="partner-logo">ERASMUS+</div>
+      <div class="partner-logo">QazMunayGaz</div>
+      <div class="partner-logo">World Bank</div>
+      <div class="partner-logo">UNESCO</div>
+      <div class="partner-logo">DAAD Germany</div>
+      <div class="partner-logo">British Council</div>
+      <div class="partner-logo">Samruk-Kazyna</div>
+      <div class="partner-logo">МОН РК</div>
+      <!-- duplicate for infinite scroll -->
+      <div class="partner-logo">Nazarbayev University</div>
+      <div class="partner-logo">Болашақ бағд.</div>
+      <div class="partner-logo">ERASMUS+</div>
+      <div class="partner-logo">QazMunayGaz</div>
+      <div class="partner-logo">World Bank</div>
+      <div class="partner-logo">UNESCO</div>
+      <div class="partner-logo">DAAD Germany</div>
+      <div class="partner-logo">British Council</div>
+      <div class="partner-logo">Samruk-Kazyna</div>
+      <div class="partner-logo">МОН РК</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Онлайн қызметтер</div>
+      <h2 class="section-title">Электронды сервистер</h2>
+    </div>
+    <div class="services-grid">
+      <a href="https://platonus.kz" target="_blank" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+        </div>
+        <div class="service-name">PLATONUS</div>
+        <div class="service-sub">platonus.kz</div>
+      </a>
+      <a href="https://e-univer.korkyt.kz/" target="_blank" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <div class="service-name">E-univer</div>
+        <div class="service-sub">e-univer.korkyt.kz</div>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <div class="service-name">AI-Sana</div>
+        <div class="service-sub">Бағдарламасы</div>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M15 10l4.553-2.07A1 1 0 0121 8.868V17a1 1 0 01-1.447.894L15 16M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div class="service-name">MOOK</div>
+        <div class="service-sub">Онлайн курстар</div>
+      </a>
+      <a href="https://library.korkyt.kz" target="_blank" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <div class="service-name">МегаПРО</div>
+        <div class="service-sub">library.korkyt.kz</div>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8l4 4-4 4M8 12h8"/></svg>
+        </div>
+        <div class="service-name">Erasmus+</div>
+        <div class="service-sub">Академиялық ұтқырлық</div>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <div class="service-name">Сабақ кестесі</div>
+        <div class="service-sub">Онлайн кесте</div>
+      </a>
+      <a href="#" class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <div class="service-name">Ғылыми кітапхана</div>
+        <div class="service-sub">Электронды ресурстар</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-main">
+    <div>
+      <div class="footer-logo">
+        <div class="footer-logo-icon">
+          <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4 L36 14 L36 28 L20 36 L4 28 L4 14 Z"/>
+            <circle cx="20" cy="20" r="5" fill="#002244"/>
+          </svg>
+        </div>
+        <div class="footer-brand">Korkyt Ata<br>Kyzylorda University</div>
+      </div>
+      <p class="footer-desc">1951 жылдан бастап Қызылорда өңірінің жетекші оқу орны ретінде білім беру, ғылым және мәдени дамуға үлес қосып келеді.</p>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Қызылорда қ., Айтеке би к-сі, 29А
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.03v2.89z"/></svg>
+        +7 (724-2) 27-08-64
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a3cacdc5cce3c8ccd1c8dad78dc8d9">[email&#160;protected]</a>
+      </div>
+      <div class="footer-socials">
+        <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="footer-social"><i class="fab fa-telegram"></i></a>
+        <a href="#" class="footer-social"><i class="fab fa-vk"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Жылдам сілтемелер</h4>
+      <ul class="footer-links">
+        <li><a href="#">Университет туралы</a></li>
+        <li><a href="#">Ректорат</a></li>
+        <li><a href="#">Институттар</a></li>
+        <li><a href="#">Жаңалықтар</a></li>
+        <li><a href="#">Хабарландырулар</a></li>
+        <li><a href="#">Конкурстар</a></li>
+        <li><a href="#">Галерея</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Оқу бағдарламалары</h4>
+      <ul class="footer-links">
+        <li><a href="#">Бакалавриат</a></li>
+        <li><a href="#">Магистратура</a></li>
+        <li><a href="#">Докторантура</a></li>
+        <li><a href="#">Талапкерге</a></li>
+        <li><a href="#">Қашықтан оқыту</a></li>
+        <li><a href="#">Халықаралық бағд.</a></li>
+        <li><a href="#">Мамандықтар тізімі</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Бізді табыңыз</h4>
+      <div class="footer-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2862.0!2d65.5195!3d44.8484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e9a0a92eddcf06b%3A0xa5b4d66c3e6d28cb!2sKorkyt%20Ata%20Kyzylorda%20University!5e0!3m2!1skk!2skz!4v1"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="University location">
+        </iframe>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Korkyt Ata Kyzylorda University.</span> Барлық құқықтар қорғалған.
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ===== HERO SLIDER =====
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dot');
+  let current = 0;
+  let autoSlide;
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  function startAuto() { autoSlide = setInterval(() => goTo(current + 1), 5000); }
+  function resetAuto() { clearInterval(autoSlide); startAuto(); }
+
+  document.getElementById('heroNext').addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+  document.getElementById('heroPrev').addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.slide); resetAuto(); }));
+  startAuto();
+
+  // ===== ANNOUNCEMENTS SLIDER =====
+  const annTrack = document.getElementById('annTrack');
+  let annIdx = 0;
+  const annCards = annTrack.querySelectorAll('.ann-card');
+  const cardW = () => annCards[0].offsetWidth + 20;
+  const visibleCount = () => Math.floor(annTrack.parentElement.offsetWidth / cardW());
+  const maxIdx = () => annCards.length / 2 - visibleCount();
+
+  function annMove(dir) {
+    annIdx = Math.max(0, Math.min(annIdx + dir, maxIdx()));
+    annTrack.style.transform = `translateX(-${annIdx * cardW()}px)`;
+  }
+  document.getElementById('annNext').addEventListener('click', () => annMove(1));
+  document.getElementById('annPrev').addEventListener('click', () => annMove(-1));
+
+  // ===== COUNTERS =====
+  function animateCounter(el) {
+    const target = +el.dataset.target;
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const step = target / (duration / 16);
+    let current = 0;
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.innerHTML = Math.floor(current).toLocaleString() + (current >= target ? suffix : '');
+      if (current >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  const counters = document.querySelectorAll('.counter-num[data-target]');
+  let counted = false;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !counted) {
+        counted = true;
+        counters.forEach(animateCounter);
+      }
+    });
+  }, { threshold: 0.3 });
+  if (counters.length) observer.observe(counters[0].closest('.counters'));
+
+  // ===== MOBILE NAV =====
+  document.getElementById('hamburgerBtn').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.toggle('open');
+  });
+  document.getElementById('mobileClose').addEventListener('click', () => {
+    document.getElementById('mobileNav').classList.remove('open');
+  });
+
+  // ===== STICKY HEADER SHADOW =====
+  window.addEventLis
