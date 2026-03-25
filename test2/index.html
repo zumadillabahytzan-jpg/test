@@ -1,0 +1,2247 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Қорқыт Ата атындағы Қызылорда Университеті</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --navy: #1B4F72;
+    --navy-dark: #12344d;
+    --navy-light: #2471a3;
+    --gold: #E3B448;
+    --gold-dark: #c9a030;
+    --gold-light: #f0c85e;
+    --azure: #00A3CC;
+    --azure-light: #33b5d6;
+    --white: #ffffff;
+    --glass: rgba(255,255,255,0.12);
+    --glass-border: rgba(255,255,255,0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: #f0f4f8;
+    color: #1a1a2e;
+    overflow-x: hidden;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #1B4F72; }
+  ::-webkit-scrollbar-thumb { background: #E3B448; border-radius: 3px; }
+
+  /* ===== GLASSMORPHISM ===== */
+  .glass {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .glass-dark {
+    background: rgba(27,79,114,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  /* ===== UTILITY BAR ===== */
+  #utility-bar {
+    background: rgba(18,52,77,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(227,180,72,0.3);
+    position: relative;
+    z-index: 100;
+  }
+
+  .lang-btn {
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.7);
+    background: transparent;
+    letter-spacing: 0.05em;
+  }
+  .lang-btn.active, .lang-btn:hover {
+    background: var(--gold);
+    color: var(--navy-dark);
+    border-color: var(--gold);
+  }
+
+  /* ===== MAIN NAVBAR ===== */
+  #main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(27,79,114,0.12);
+    border-bottom: 2px solid rgba(227,180,72,0.4);
+    transition: all 0.4s;
+  }
+
+  #main-nav.scrolled {
+    background: rgba(27,79,114,0.97);
+  }
+  #main-nav.scrolled .nav-link { color: rgba(255,255,255,0.9); }
+  #main-nav.scrolled .logo-text { color: white; }
+  #main-nav.scrolled .logo-sub { color: var(--gold); }
+
+  .logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.1;
+    transition: color 0.4s;
+  }
+  .logo-sub {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--azure);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.4s;
+  }
+
+  .nav-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    padding: 8px 14px;
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.3s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .nav-link:hover { color: var(--azure); }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px; left: 14px; right: 14px;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    border-radius: 1px;
+  }
+  .nav-link:hover::after { transform: scaleX(1); }
+
+  /* ===== MEGA MENU ===== */
+  .mega-menu-wrapper { position: relative; }
+  .mega-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 280px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(27,79,114,0.2);
+    border: 1px solid rgba(227,180,72,0.3);
+    padding: 16px;
+    z-index: 200;
+    animation: dropDown 0.3s ease;
+  }
+  .mega-menu.wide { min-width: 600px; }
+  .mega-menu.ultra-wide { min-width: 800px; }
+
+  @keyframes dropDown {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  .mega-menu-wrapper:hover .mega-menu { display: flex; }
+
+  .mega-col h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold-dark);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+  }
+  .mega-col a {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--navy);
+    padding: 5px 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    text-decoration: none;
+    line-height: 1.4;
+  }
+  .mega-col a:hover {
+    background: rgba(0,163,204,0.1);
+    color: var(--azure);
+    padding-left: 14px;
+  }
+
+  /* ===== HERO SECTION ===== */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-slides { position: absolute; inset: 0; }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(27,79,114,0.75) 0%, rgba(18,52,77,0.55) 50%, rgba(0,163,204,0.3) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 24px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(227,180,72,0.2);
+    border: 1px solid rgba(227,180,72,0.5);
+    border-radius: 50px;
+    padding: 6px 20px;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    animation: fadeInDown 1s ease 0.3s both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 68px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    animation: fadeInUp 1s ease 0.5s both;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 20px);
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease 0.7s both;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 1s ease 0.9s both;
+  }
+
+  .btn-primary {
+    padding: 14px 32px;
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.03em;
+  }
+  .btn-primary:hover {
+    background: var(--gold-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(227,180,72,0.5);
+  }
+
+  .btn-glass {
+    padding: 14px 32px;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 50px;
+    border: 1px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    backdrop-filter: blur(10px);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-glass:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  }
+
+  /* Hero Dots */
+  .hero-dots {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+  .hero-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .hero-dot.active {
+    background: var(--gold);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* Hero scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ===== SECTION TITLES ===== */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--azure);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-label::before, .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(0,163,204,0.3);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  /* ===== ADMISSION CARDS (FLIP) ===== */
+  .flip-card {
+    perspective: 1200px;
+    height: 280px;
+  }
+  .flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .flip-front {
+    background: white;
+    border: 1px solid rgba(27,79,114,0.15);
+    box-shadow: 0 8px 32px rgba(27,79,114,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .flip-front::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--azure));
+  }
+  .flip-back {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 32px;
+    text-align: center;
+    color: white;
+  }
+
+  .flip-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    transition: transform 0.3s;
+  }
+  .flip-card:hover .flip-icon { transform: scale(1.1); }
+
+  /* ===== INSTITUTES SECTION ===== */
+  .institute-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(27,79,114,0.1);
+    position: relative;
+  }
+  .institute-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--navy), var(--azure));
+    opacity: 0;
+    transition: opacity 0.4s;
+    border-radius: 16px;
+    z-index: 0;
+  }
+  .institute-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 24px 60px rgba(27,79,114,0.25), 0 0 0 2px var(--azure);
+  }
+  .institute-card:hover::before { opacity: 1; }
+  .institute-card:hover .inst-content { color: white; }
+  .institute-card:hover .inst-icon { background: rgba(255,255,255,0.2) !important; color: white !important; }
+  .institute-card:hover .inst-link { color: white; border-color: rgba(255,255,255,0.5); }
+
+  .inst-content { position: relative; z-index: 1; padding: 28px; }
+
+  .ai-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  /* ===== STATS ===== */
+  #stats {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #1a5c8a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  #stats::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(0,163,204,0.15) 0%, transparent 60%),
+                      radial-gradient(circle at 80% 50%, rgba(227,180,72,0.1) 0%, transparent 60%);
+  }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  /* ===== NEWS SLIDER ===== */
+  .news-slide { display: none; }
+  .news-slide.active { display: grid; }
+
+  /* ===== ANNOUNCEMENTS ===== */
+  .announce-slider {
+    display: flex;
+    gap: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+  .announce-card {
+    flex: 0 0 calc(20% - 13px);
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s;
+    border: 1px solid rgba(27,79,114,0.1);
+    cursor: pointer;
+  }
+  .announce-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(27,79,114,0.18);
+  }
+
+  /* ===== DIGITAL SERVICES ===== */
+  .service-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid rgba(27,79,114,0.08);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--navy), var(--azure));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 48px rgba(27,79,114,0.2);
+  }
+  .service-card:hover::after { opacity: 1; }
+  .service-card:hover .service-icon,
+  .service-card:hover .service-name { position: relative; z-index: 1; color: white; }
+  .service-icon { font-size: 36px; transition: color 0.3s; }
+  .service-name { font-size: 12px; font-weight: 600; transition: color 0.3s; margin-top: 12px; }
+
+  /* ===== PARTNERS SLIDER ===== */
+  .partners-track {
+    display: flex;
+    animation: slide 30s linear infinite;
+    width: max-content;
+  }
+  @keyframes slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .partner-logo {
+    flex: 0 0 160px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px;
+    filter: grayscale(1) opacity(0.5);
+    transition: filter 0.3s;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    background: white;
+    border-radius: 10px;
+    padding: 12px 20px;
+    border: 1px solid rgba(27,79,114,0.1);
+  }
+  .partner-logo:hover { filter: grayscale(0) opacity(1); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: linear-gradient(180deg, #0d2d45 0%, #081e2f 100%);
+    color: rgba(255,255,255,0.75);
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--navy), var(--azure), var(--gold), var(--azure), var(--navy));
+  }
+
+  .footer-link {
+    display: block;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    padding: 4px 0;
+    transition: all 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .footer-link:hover { color: var(--gold); padding-left: 6px; }
+
+  /* ===== AI ASSISTANT BUTTON ===== */
+  #ai-assistant {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+  }
+
+  .ai-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--azure));
+    border: 2px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 32px rgba(27,79,114,0.4);
+    position: relative;
+  }
+  .ai-btn:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 12px 40px rgba(0,163,204,0.5);
+  }
+  .ai-btn .pulse {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid var(--azure);
+    animation: pulse 2s ease infinite;
+  }
+  .ai-btn .pulse2 {
+    animation-delay: 1s;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  .ai-chat {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 340px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(27,79,114,0.25);
+    border: 1px solid rgba(27,79,114,0.1);
+    display: none;
+    overflow: hidden;
+    animation: slideUp 0.3s ease;
+  }
+  .ai-chat.open { display: block; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .ai-chat-header {
+    background: linear-gradient(135deg, var(--navy), var(--azure));
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ai-messages {
+    padding: 16px;
+    max-height: 260px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ai-msg {
+    background: #f0f4f8;
+    border-radius: 12px 12px 12px 4px;
+    padding: 10px 14px;
+    font-size: 13px;
+    max-width: 85%;
+    line-height: 1.5;
+    color: var(--navy);
+  }
+  .ai-msg.user {
+    background: var(--navy);
+    color: white;
+    border-radius: 12px 12px 4px 12px;
+    align-self: flex-end;
+  }
+
+  .ai-input-row {
+    padding: 12px 16px;
+    border-top: 1px solid rgba(27,79,114,0.1);
+    display: flex;
+    gap: 8px;
+  }
+  .ai-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid rgba(27,79,114,0.2);
+    border-radius: 10px;
+    font-size: 13px;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .ai-input:focus { border-color: var(--azure); }
+  .ai-send {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--navy);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    flex-shrink: 0;
+  }
+  .ai-send:hover { background: var(--azure); }
+
+  /* ===== BACK TO TOP ===== */
+  #back-top {
+    position: fixed;
+    bottom: 30px;
+    right: 110px;
+    width: 44px;
+    height: 44px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(227,180,72,0.4);
+    z-index: 998;
+    transition: all 0.3s;
+    border: none;
+  }
+  #back-top.show { display: flex; }
+  #back-top:hover { transform: translateY(-3px); background: var(--gold-dark); }
+
+  /* ===== MOBILE MENU ===== */
+  #mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--navy-dark);
+    z-index: 300;
+    padding: 80px 24px 40px;
+    overflow-y: auto;
+  }
+  #mobile-menu.open { display: block; }
+
+  /* ===== MISCELLANEOUS ===== */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(27,79,114,0.2), transparent);
+    margin: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .news-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    background: linear-gradient(135deg, var(--navy), var(--azure));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-nav { display: none; }
+    .mega-menu { display: none !important; }
+    .announce-card { flex: 0 0 calc(85% - 8px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== UTILITY BAR ===== -->
+<div id="utility-bar" class="py-2">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4 flex-wrap">
+    <div class="flex items-center gap-4">
+      <a href="#" class="text-white/60 text-xs hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-sitemap text-xs"></i><span>Sitemap</span>
+      </a>
+      <a href="#" class="text-white/60 text-xs hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-shield-check text-xs"></i><span>Compliance</span>
+      </a>
+      <a href="#" class="text-white/60 text-xs hover:text-white flex items-center gap-1.5 transition-colors">
+        <i class="fas fa-headset text-xs"></i><span>Helpdesk</span>
+      </a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="flex gap-1">
+        <button class="lang-btn active" onclick="setLang('KZ')">KZ</button>
+        <button class="lang-btn" onclick="setLang('RU')">RU</button>
+        <button class="lang-btn" onclick="setLang('EN')">EN</button>
+      </div>
+      <div class="w-px h-4 bg-white/20"></div>
+      <div class="flex gap-3">
+        <a href="#" class="text-white/60 hover:text-[#E3B448] text-sm transition-colors"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-white/60 hover:text-[#E3B448] text-sm transition-colors"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-white/60 hover:text-[#E3B448] text-sm transition-colors"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="text-white/60 hover:text-[#E3B448] text-sm transition-colors"><i class="fab fa-telegram"></i></a>
+        <a href="#" class="text-white/60 hover:text-[#E3B448] text-sm transition-colors"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div class="flex items-center gap-1.5 text-white/60 text-xs">
+        <i class="fas fa-phone-alt"></i>
+        <span>+7 (724) 226-26-36</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MAIN NAVBAR ===== -->
+<nav id="main-nav">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3 flex-shrink-0">
+      <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#1B4F72,#00A3CC)">
+        <svg viewBox="0 0 40 40" class="w-8 h-8" fill="none">
+          <circle cx="20" cy="20" r="18" stroke="#E3B448" stroke-width="2"/>
+          <path d="M20 6 L20 34 M6 20 L34 20" stroke="white" stroke-width="1.5"/>
+          <path d="M20 6 C20 6 28 14 28 20 C28 26 20 34 20 34 C20 34 12 26 12 20 C12 14 20 6 20 6Z" stroke="white" stroke-width="1.5" fill="none"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-text">Қорқыт Ата</div>
+        <div class="logo-sub">Қызылорда Университеті</div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="desktop-nav flex items-center gap-1">
+
+      <!-- Университет -->
+      <div class="mega-menu-wrapper">
+        <div class="nav-link flex items-center gap-1">Университет <i class="fas fa-chevron-down text-xs opacity-60"></i></div>
+        <div class="mega-menu wide flex-col gap-2 p-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="mega-col">
+              <h4>Туралы</h4>
+              <a href="#">Ректордың сөзі</a>
+              <a href="#">Тарих пен миссия</a>
+              <a href="#">Ұйымдық құрылым</a>
+              <a href="#">Ректорат</a>
+              <a href="#">Ғылыми кеңес</a>
+              <a href="#">Нормативтік-құқықтық база</a>
+              <a href="#">Сапа менеджменті</a>
+            </div>
+            <div class="mega-col">
+              <h4>Инфрақұрылым</h4>
+              <a href="#">Кампус картасы</a>
+              <a href="#">Кітапхана</a>
+              <a href="#">Спорт кешені</a>
+              <a href="#">Жатақхана</a>
+              <a href="#">Студенттік орталық</a>
+              <a href="#">Мәдени орталық</a>
+              <a href="#">Медициналық пункт</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Білім беру -->
+      <div class="mega-menu-wrapper">
+        <div class="nav-link flex items-center gap-1">Білім беру <i class="fas fa-chevron-down text-xs opacity-60"></i></div>
+        <div class="mega-menu ultra-wide flex-col gap-2 p-5">
+          <div class="grid grid-cols-3 gap-4">
+            <div class="mega-col">
+              <h4>Бакалавриат</h4>
+              <a href="#">Мамандықтар тізімі</a>
+              <a href="#">Оқу жоспарлары</a>
+              <a href="#">Силлабустар</a>
+              <a href="#">Электрондық оқулықтар</a>
+              <a href="#">Тәжірибе базалары</a>
+            </div>
+            <div class="mega-col">
+              <h4>Магистратура</h4>
+              <a href="#">Мамандықтар</a>
+              <a href="#">Оқу жоспарлары</a>
+              <a href="#">Диссертация қорғау</a>
+              <a href="#">Ғылыми жетекшілер</a>
+              <a href="#">Жарияланымдар</a>
+            </div>
+            <div class="mega-col">
+              <h4>Докторантура (PhD)</h4>
+              <a href="#">Бағдарламалар</a>
+              <a href="#">Зерттеу жобалары</a>
+              <a href="#">PhD защита</a>
+              <a href="#">Жарияланымдар</a>
+              <a href="#">Гранттар</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ғылым -->
+      <div class="mega-menu-wrapper">
+        <div class="nav-link flex items-center gap-1">Ғылым <i class="fas fa-chevron-down text-xs opacity-60"></i></div>
+        <div class="mega-menu wide flex-col gap-2 p-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="mega-col">
+              <h4>Зерттеу</h4>
+              <a href="#">Ғылыми жобалар</a>
+              <a href="#">Инновациялық орталық</a>
+              <a href="#">Зертханалар</a>
+              <a href="#">Патенттер мен инновациялар</a>
+              <a href="#">ЖАИ Институты</a>
+            </div>
+            <div class="mega-col">
+              <h4>Журналдар</h4>
+              <a href="#">Хабаршы (Вестник)</a>
+              <a href="#">Scopus мақалалары</a>
+              <a href="#">Web of Science</a>
+              <a href="#">Конференциялар</a>
+              <a href="#">Монографиялар</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Студентке -->
+      <div class="mega-menu-wrapper">
+        <div class="nav-link flex items-center gap-1">Студентке <i class="fas fa-chevron-down text-xs opacity-60"></i></div>
+        <div class="mega-menu flex-col gap-2 p-5">
+          <div class="mega-col">
+            <h4>Сервистер</h4>
+            <a href="#">Platonus кабинеті</a>
+            <a href="#">Электрондық кітапхана</a>
+            <a href="#">Кесте</a>
+            <a href="#">Стипендия</a>
+            <a href="#">Психологиялық қолдау</a>
+            <a href="#">Жатақхана өтінім</a>
+            <a href="#">Студент кеңесі</a>
+            <a href="#">Клубтар мен секциялар</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Халықаралық -->
+      <div class="mega-menu-wrapper">
+        <div class="nav-link flex items-center gap-1">Халықаралық <i class="fas fa-chevron-down text-xs opacity-60"></i></div>
+        <div class="mega-menu wide flex-col gap-2 p-5">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="mega-col">
+              <h4>Ынтымақтастық</h4>
+              <a href="#">Серіктес университеттер</a>
+              <a href="#">Erasmus+ бағдарламасы</a>
+              <a href="#">Болон үдерісі</a>
+              <a href="#">Халықаралық ранкингтер</a>
+              <a href="#">Меморандумдар</a>
+            </div>
+            <div class="mega-col">
+              <h4>Академиялық ұтқырлық</h4>
+              <a href="#">Шетелдік студенттерге</a>
+              <a href="#">Алмасу бағдарламалары</a>
+              <a href="#">Грант іздеу</a>
+              <a href="#">Халықаралық конференциялар</a>
+              <a href="#">Визалық ақпарат</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Медиа -->
+      <div class="mega-menu-wrapper">
+        <div class="nav-link flex items-center gap-1">Медиа <i class="fas fa-chevron-down text-xs opacity-60"></i></div>
+        <div class="mega-menu flex-col gap-2 p-5">
+          <div class="mega-col">
+            <h4>Мазмұн</h4>
+            <a href="#">Жаңалықтар</a>
+            <a href="#">Хабарландырулар</a>
+            <a href="#">Фотогалерея</a>
+            <a href="#">Бейнегалерея</a>
+            <a href="#">Баспасөз орталығы</a>
+            <a href="#">Онлайн трансляция</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ТДМ -->
+      <div class="mega-menu-wrapper">
+        <div class="nav-link flex items-center gap-1">ТДМ <i class="fas fa-chevron-down text-xs opacity-60"></i></div>
+        <div class="mega-menu flex-col gap-2 p-5">
+          <div class="mega-col">
+            <h4>Тұрақты Даму Мақсаттары</h4>
+            <a href="#"><span class="inline-block w-5 h-5 rounded mr-1 bg-red-500 text-white text-center text-xs leading-5">1</span> Кедейлікке жол жоқ</a>
+            <a href="#"><span class="inline-block w-5 h-5 rounded mr-1 bg-yellow-500 text-white text-center text-xs leading-5">4</span> Сапалы білім</a>
+            <a href="#"><span class="inline-block w-5 h-5 rounded mr-1 bg-blue-500 text-white text-center text-xs leading-5">9</span> Инновациялар</a>
+            <a href="#"><span class="inline-block w-5 h-5 rounded mr-1 bg-green-600 text-white text-center text-xs leading-5">13</span> Климат шаралары</a>
+            <a href="#"><span class="inline-block w-5 h-5 rounded mr-1 bg-purple-600 text-white text-center text-xs leading-5">17</span> Серіктестік</a>
+            <a href="#">Барлық ТДМ →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA + Mobile btn -->
+    <div class="flex items-center gap-3">
+      <a href="#admission" class="hidden md:flex btn-primary py-2.5 px-5 text-sm">
+        <i class="fas fa-graduation-cap"></i> Түсу
+      </a>
+      <button id="mobile-toggle" class="md:hidden w-10 h-10 rounded-lg bg-navy/10 flex items-center justify-center" style="background:rgba(27,79,114,0.1)">
+        <i class="fas fa-bars text-[#1B4F72]"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-slides" id="hero-slides">
+    <div class="hero-slide active" style="background-image:linear-gradient(135deg,#1B4F72 0%,#00A3CC 100%)"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(135deg,#0d2d45 0%,#1B4F72 50%,#E3B448 100%)"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(135deg,#00A3CC 0%,#1B4F72 100%)"></div>
+    <div class="hero-slide" style="background-image:linear-gradient(135deg,#12344d 0%,#2471a3 50%,#00A3CC 100%)"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-star text-xs"></i>
+      <span data-kz="Қазақстанның жетекші университеті" data-ru="Ведущий университет Казахстана" data-en="Leading University of Kazakhstan">Қазақстанның жетекші университеті</span>
+    </div>
+    <h1 class="hero-title" data-kz="Қорқыт Ата атындағы<br>Қызылорда Университеті" data-ru="Кызылординский Университет<br>имени Коркыт Ата" data-en="Korkyt Ata<br>Kyzylorda University">
+      Қорқыт Ата атындағы<br>Қызылорда Университеті
+    </h1>
+    <p class="hero-sub" data-kz="Инновация. Білім. Болашақ." data-ru="Инновации. Образование. Будущее." data-en="Innovation. Education. Future.">
+      Инновация. Білім. Болашақ.
+    </p>
+    <div class="hero-btns">
+      <a href="#admission" class="btn-primary">
+        <i class="fas fa-graduation-cap"></i>
+        <span data-kz="Түсуге өтінім" data-ru="Подать заявку" data-en="Apply Now">Түсуге өтінім</span>
+      </a>
+      <a href="#institutes" class="btn-glass">
+        <i class="fas fa-university"></i>
+        <span data-kz="Институттар" data-ru="Институты" data-en="Institutes">Институттар</span>
+      </a>
+      <a href="#" class="btn-glass">
+        <i class="fas fa-play-circle"></i>
+        <span data-kz="Бейнеролик" data-ru="Видеоролик" data-en="Watch Video">Бейнеролик</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Dots -->
+  <div class="hero-dots" id="hero-dots">
+    <div class="hero-dot active" onclick="goToSlide(0)"></div>
+    <div class="hero-dot" onclick="goToSlide(1)"></div>
+    <div class="hero-dot" onclick="goToSlide(2)"></div>
+    <div class="hero-dot" onclick="goToSlide(3)"></div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <div class="flex flex-col items-center gap-2">
+      <span class="text-white/60 text-xs font-medium uppercase tracking-widest">Scroll</span>
+      <i class="fas fa-chevron-down text-white/60 text-lg"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUICK STATS BAR ===== -->
+<div style="background:#E3B448">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3">
+    <div class="flex items-center gap-6 flex-wrap">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-medal text-navy-dark text-sm" style="color:#1B4F72"></i>
+        <span class="text-xs font-700 text-navy-dark" style="color:#12344d;font-weight:700">QS Ranked University</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <i class="fas fa-award text-sm" style="color:#1B4F72"></i>
+        <span class="text-xs font-700" style="color:#12344d;font-weight:700">ISO 21001:2018 Certified</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <i class="fas fa-globe text-sm" style="color:#1B4F72"></i>
+        <span class="text-xs font-700" style="color:#12344d;font-weight:700">42+ International Partners</span>
+      </div>
+    </div>
+    <a href="#" class="text-xs font-700 flex items-center gap-1.5" style="color:#1B4F72;font-weight:700">
+      Жаңалықтарды оқу <i class="fas fa-arrow-right text-xs"></i>
+    </a>
+  </div>
+</div>
+
+<!-- ===== ADMISSION SECTION ===== -->
+<section id="admission" class="py-20 px-4" style="background:linear-gradient(180deg,#f0f4f8 0%,#e8eef4 100%)">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="section-label justify-center">Қабылдау комиссиясы</p>
+      <h2 class="section-title">Қорқыт Ата Университетіне<br><span style="color:#00A3CC">Қош Келдіңіз</span></h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto text-sm leading-relaxed">Болашаққа инвестиция жасаңыз. Сапалы білім, инновациялық зерттеулер және халықаралық ынтымақтастық.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Талапкер -->
+      <div class="flip-card reveal reveal-delay-1">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon" style="background:rgba(27,79,114,0.1);color:#1B4F72">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="text-center">
+              <h3 class="font-700 text-lg mb-1" style="color:#1B4F72;font-weight:700">Талапкер</h3>
+              <p class="text-gray-500 text-xs">Абитуриентке арналған ақпарат</p>
+            </div>
+            <div class="flex flex-wrap gap-1 justify-center">
+              <span class="tag" style="background:rgba(27,79,114,0.1);color:#1B4F72">ҰБТ</span>
+              <span class="tag" style="background:rgba(0,163,204,0.1);color:#00A3CC">Гранттар</span>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-2" style="background:rgba(255,255,255,0.15)">
+              <i class="fas fa-user-graduate text-2xl text-white"></i>
+            </div>
+            <h3 class="text-white font-700 text-lg" style="font-weight:700">Талапкер</h3>
+            <p class="text-white/80 text-xs leading-relaxed">ҰБТ нәтижелері, грант конкурсы, мамандық таңдау бойынша толық ақпарат</p>
+            <a href="#" class="btn-primary text-sm py-2 px-6 mt-2">Подробнее →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Бакалавриат -->
+      <div class="flip-card reveal reveal-delay-2">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon" style="background:rgba(0,163,204,0.1);color:#00A3CC">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <div class="text-center">
+              <h3 class="font-700 text-lg mb-1" style="color:#1B4F72;font-weight:700">Бакалавриат</h3>
+              <p class="text-gray-500 text-xs">4 жылдық оқу бағдарламалары</p>
+            </div>
+            <div class="flex flex-wrap gap-1 justify-center">
+              <span class="tag" style="background:rgba(0,163,204,0.1);color:#00A3CC">70+ мамандық</span>
+              <span class="tag" style="background:rgba(227,180,72,0.15);color:#c9a030">Онлайн</span>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-2" style="background:rgba(255,255,255,0.15)">
+              <i class="fas fa-book-open text-2xl text-white"></i>
+            </div>
+            <h3 class="text-white font-700 text-lg" style="font-weight:700">Бакалавриат</h3>
+            <p class="text-white/80 text-xs leading-relaxed">70-тен астам мамандық, кредиттік оқыту технологиясы, стипендия мүмкіндіктері</p>
+            <a href="#" class="btn-primary text-sm py-2 px-6 mt-2">Подробнее →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Магистратура -->
+      <div class="flip-card reveal reveal-delay-3">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon" style="background:rgba(227,180,72,0.15);color:#c9a030">
+              <i class="fas fa-flask"></i>
+            </div>
+            <div class="text-center">
+              <h3 class="font-700 text-lg mb-1" style="color:#1B4F72;font-weight:700">Магистратура</h3>
+              <p class="text-gray-500 text-xs">Жоғары кәсіби дайындық</p>
+            </div>
+            <div class="flex flex-wrap gap-1 justify-center">
+              <span class="tag" style="background:rgba(227,180,72,0.15);color:#c9a030">588 магистрант</span>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-2" style="background:rgba(255,255,255,0.15)">
+              <i class="fas fa-flask text-2xl text-white"></i>
+            </div>
+            <h3 class="text-white font-700 text-lg" style="font-weight:700">Магистратура</h3>
+            <p class="text-white/80 text-xs leading-relaxed">Ғылыми-педагогикалық және бейінді бағыттар, халықаралық сертификаттар</p>
+            <a href="#" class="btn-primary text-sm py-2 px-6 mt-2">Подробнее →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Докторантура -->
+      <div class="flip-card reveal reveal-delay-4">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <div class="flip-icon" style="background:rgba(27,79,114,0.08);color:#1B4F72">
+              <i class="fas fa-atom"></i>
+            </div>
+            <div class="text-center">
+              <h3 class="font-700 text-lg mb-1" style="color:#1B4F72;font-weight:700">Докторантура</h3>
+              <p class="text-gray-500 text-xs">PhD зерттеу бағдарламалары</p>
+            </div>
+            <div class="flex flex-wrap gap-1 justify-center">
+              <span class="tag" style="background:rgba(27,79,114,0.1);color:#1B4F72">93 PhD</span>
+              <span class="tag" style="background:rgba(0,163,204,0.1);color:#00A3CC">Scopus</span>
+            </div>
+          </div>
+          <div class="flip-back">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mb-2" style="background:rgba(255,255,255,0.15)">
+              <i class="fas fa-atom text-2xl text-white"></i>
+            </div>
+            <h3 class="text-white font-700 text-lg" style="font-weight:700">Докторантура (PhD)</h3>
+            <p class="text-white/80 text-xs leading-relaxed">ЖАИ, цифрлық экономика, педагогика — халықаралық деңгейде зерттеулер</p>
+            <a href="#" class="btn-primary text-sm py-2 px-6 mt-2">Подробнее →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTITUTES SECTION ===== -->
+<section id="institutes" class="py-20 px-4 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-14 reveal">
+      <p class="section-label justify-center">Академиялық бөлімдер</p>
+      <h2 class="section-title">Институттар мен факультеттер</h2>
+      <p class="text-gray-500 mt-4 text-sm max-w-xl mx-auto">Кәсіби білім беру, ғылыми зерттеулер және инновация орталықтары</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- AI Institute (Highlight) -->
+      <div class="institute-card reveal reveal-delay-1" style="border:2px solid #E3B448">
+        <div class="ai-badge"><i class="fas fa-robot mr-1"></i>AI Hub</div>
+        <div class="inst-content">
+          <div class="inst-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl transition-all" style="background:rgba(227,180,72,0.15);color:#E3B448">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3 class="font-700 text-base mb-2 transition-colors" style="color:#1B4F72;font-weight:700">Жасанды интеллект институты</h3>
+          <p class="text-gray-500 text-xs leading-relaxed mb-4">ЖИ агенттері, машиналық оқыту, Big Data, цифрлық трансформация зерттеулері</p>
+          <div class="flex flex-wrap gap-1 mb-4">
+            <span class="tag text-xs" style="background:rgba(227,180,72,0.1);color:#c9a030">AI Agents</span>
+            <span class="tag text-xs" style="background:rgba(0,163,204,0.1);color:#00A3CC">ML</span>
+            <span class="tag text-xs" style="background:rgba(27,79,114,0.08);color:#1B4F72">Big Data</span>
+          </div>
+          <a href="#" class="inst-link text-xs font-600 flex items-center gap-1.5 transition-all border-b pb-0.5 w-fit" style="color:#1B4F72;font-weight:600;border-color:#1B4F72">
+            Толығырақ <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Institute 2 -->
+      <div class="institute-card reveal reveal-delay-2">
+        <div class="inst-content">
+          <div class="inst-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(27,79,114,0.08);color:#1B4F72">
+            <i class="fas fa-industry"></i>
+          </div>
+          <h3 class="font-700 text-base mb-2 transition-colors" style="color:#1B4F72;font-weight:700">Инженерлік-техникалық институт</h3>
+          <p class="text-gray-500 text-xs leading-relaxed mb-4">Мұнай-газ инженериясы, электроэнергетика, көлік жүйелері, автоматика</p>
+          <div class="flex flex-wrap gap-1 mb-4">
+            <span class="tag text-xs" style="background:rgba(27,79,114,0.08);color:#1B4F72">Мұнай&Газ</span>
+            <span class="tag text-xs" style="background:rgba(0,163,204,0.1);color:#00A3CC">Энергетика</span>
+          </div>
+          <a href="#" class="inst-link text-xs font-600 flex items-center gap-1.5 transition-all border-b pb-0.5 w-fit" style="color:#1B4F72;font-weight:600;border-color:#1B4F72">
+            Толығырақ <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Institute 3 -->
+      <div class="institute-card reveal reveal-delay-3">
+        <div class="inst-content">
+          <div class="inst-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(0,163,204,0.1);color:#00A3CC">
+            <i class="fas fa-balance-scale"></i>
+          </div>
+          <h3 class="font-700 text-base mb-2 transition-colors" style="color:#1B4F72;font-weight:700">Гуманитарлық және педагогика</h3>
+          <p class="text-gray-500 text-xs leading-relaxed mb-4">Тіл білімі, тарих, педагогика, психология, мәдениеттану мамандықтары</p>
+          <div class="flex flex-wrap gap-1 mb-4">
+            <span class="tag text-xs" style="background:rgba(0,163,204,0.1);color:#00A3CC">Педагогика</span>
+            <span class="tag text-xs" style="background:rgba(227,180,72,0.15);color:#c9a030">Тіл білімі</span>
+          </div>
+          <a href="#" class="inst-link text-xs font-600 flex items-center gap-1.5 transition-all border-b pb-0.5 w-fit" style="color:#1B4F72;font-weight:600;border-color:#1B4F72">
+            Толығырақ <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Institute 4 -->
+      <div class="institute-card reveal reveal-delay-1">
+        <div class="inst-content">
+          <div class="inst-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(227,180,72,0.15);color:#c9a030">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="font-700 text-base mb-2 transition-colors" style="color:#1B4F72;font-weight:700">Экономика және бизнес</h3>
+          <p class="text-gray-500 text-xs leading-relaxed mb-4">Менеджмент, маркетинг, қаржы, бухгалтерлік есеп және аудит</p>
+          <div class="flex flex-wrap gap-1 mb-4">
+            <span class="tag text-xs" style="background:rgba(227,180,72,0.15);color:#c9a030">MBA</span>
+            <span class="tag text-xs" style="background:rgba(27,79,114,0.08);color:#1B4F72">Қаржы</span>
+          </div>
+          <a href="#" class="inst-link text-xs font-600 flex items-center gap-1.5 transition-all border-b pb-0.5 w-fit" style="color:#1B4F72;font-weight:600;border-color:#1B4F72">
+            Толығырақ <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Institute 5 -->
+      <div class="institute-card reveal reveal-delay-2">
+        <div class="inst-content">
+          <div class="inst-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(27,79,114,0.08);color:#1B4F72">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3 class="font-700 text-base mb-2 transition-colors" style="color:#1B4F72;font-weight:700">Аграрлық технологиялар</h3>
+          <p class="text-gray-500 text-xs leading-relaxed mb-4">Ауыл шаруашылығы, биотехнология, су шаруашылығы, экология</p>
+          <div class="flex flex-wrap gap-1 mb-4">
+            <span class="tag text-xs" style="background:rgba(34,197,94,0.15);color:#16a34a">Экология</span>
+            <span class="tag text-xs" style="background:rgba(27,79,114,0.08);color:#1B4F72">Биотех</span>
+          </div>
+          <a href="#" class="inst-link text-xs font-600 flex items-center gap-1.5 transition-all border-b pb-0.5 w-fit" style="color:#1B4F72;font-weight:600;border-color:#1B4F72">
+            Толығырақ <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Institute 6 -->
+      <div class="institute-card reveal reveal-delay-3">
+        <div class="inst-content">
+          <div class="inst-icon w-14 h-14 rounded-xl flex items-center justify-center mb-4 text-2xl" style="background:rgba(0,163,204,0.1);color:#00A3CC">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3 class="font-700 text-base mb-2 transition-colors" style="color:#1B4F72;font-weight:700">Медицина және денсаулық</h3>
+          <p class="text-gray-500 text-xs leading-relaxed mb-4">Денсаулық сақтау, мейіргерлік іс, фармацевтика, медициналық биохимия</p>
+          <div class="flex flex-wrap gap-1 mb-4">
+            <span class="tag text-xs" style="background:rgba(239,68,68,0.1);color:#dc2626">Медицина</span>
+            <span class="tag text-xs" style="background:rgba(0,163,204,0.1);color:#00A3CC">Фарма</span>
+          </div>
+          <a href="#" class="inst-link text-xs font-600 flex items-center gap-1.5 transition-all border-b pb-0.5 w-fit" style="color:#1B4F72;font-weight:600;border-color:#1B4F72">
+            Толығырақ <i class="fas fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <a href="#" class="btn-primary inline-flex">
+        <i class="fas fa-th-large"></i> Барлық бөлімдер
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS SECTION ===== -->
+<section id="stats" class="py-20 px-4">
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-12 reveal">
+      <p class="section-label justify-center" style="color:rgba(227,180,72,0.8)">Жетістіктеріміз</p>
+      <h2 class="section-title text-white">Сандар тілінде</h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="text-center glass rounded-2xl p-8 reveal reveal-delay-1">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:rgba(227,180,72,0.2)">
+          <i class="fas fa-atom text-xl" style="color:#E3B448"></i>
+        </div>
+        <span class="stat-number" data-target="93" data-suffix="">0</span>
+        <p class="text-white/70 text-sm mt-2 font-500">PhD докторанттары</p>
+      </div>
+      <div class="text-center glass rounded-2xl p-8 reveal reveal-delay-2">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:rgba(0,163,204,0.2)">
+          <i class="fas fa-flask text-xl" style="color:#00A3CC"></i>
+        </div>
+        <span class="stat-number" data-target="588" data-suffix="">0</span>
+        <p class="text-white/70 text-sm mt-2 font-500">Магистранттар</p>
+      </div>
+      <div class="text-center glass rounded-2xl p-8 reveal reveal-delay-3">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:rgba(227,180,72,0.2)">
+          <i class="fas fa-chalkboard-teacher text-xl" style="color:#E3B448"></i>
+        </div>
+        <span class="stat-number" data-target="504" data-suffix="">0</span>
+        <p class="text-white/70 text-sm mt-2 font-500">ППС саны</p>
+      </div>
+      <div class="text-center glass rounded-2xl p-8 reveal reveal-delay-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:rgba(0,163,204,0.2)">
+          <i class="fas fa-users text-xl" style="color:#00A3CC"></i>
+        </div>
+        <span class="stat-number" data-target="10360" data-suffix="+">0</span>
+        <p class="text-white/70 text-sm mt-2 font-500">Студент саны</p>
+      </div>
+    </div>
+
+    <!-- Extra stats row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+      <div class="glass rounded-xl p-4 flex items-center gap-3 reveal">
+        <i class="fas fa-globe text-2xl" style="color:#E3B448"></i>
+        <div>
+          <div class="text-white font-700 text-xl" style="font-weight:700">42+</div>
+          <div class="text-white/60 text-xs">Халықаралық серіктестер</div>
+        </div>
+      </div>
+      <div class="glass rounded-xl p-4 flex items-center gap-3 reveal reveal-delay-1">
+        <i class="fas fa-file-alt text-2xl" style="color:#00A3CC"></i>
+        <div>
+          <div class="text-white font-700 text-xl" style="font-weight:700">1200+</div>
+          <div class="text-white/60 text-xs">Scopus мақалалар</div>
+        </div>
+      </div>
+      <div class="glass rounded-xl p-4 flex items-center gap-3 reveal reveal-delay-2">
+        <i class="fas fa-trophy text-2xl" style="color:#E3B448"></i>
+        <div>
+          <div class="text-white font-700 text-xl" style="font-weight:700">70+</div>
+          <div class="text-white/60 text-xs">Мамандықтар</div>
+        </div>
+      </div>
+      <div class="glass rounded-xl p-4 flex items-center gap-3 reveal reveal-delay-3">
+        <i class="fas fa-history text-2xl" style="color:#00A3CC"></i>
+        <div>
+          <div class="text-white font-700 text-xl" style="font-weight:700">55+</div>
+          <div class="text-white/60 text-xs">Жыл тарихы</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWS SECTION ===== -->
+<section id="news" class="py-20 px-4 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-end justify-between mb-12 flex-wrap gap-4 reveal">
+      <div>
+        <p class="section-label">Соңғы жаңалықтар</p>
+        <h2 class="section-title">Жаңалықтар & <span style="color:#00A3CC">Оқиғалар</span></h2>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="prevNews()" class="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center hover:bg-navy hover:border-navy hover:text-white transition-all" style="--tw-hover-bg:#1B4F72">
+          <i class="fas fa-chevron-left text-sm text-gray-500"></i>
+        </button>
+        <button onclick="nextNews()" class="w-10 h-10 rounded-xl flex items-center justify-center text-white transition-all" style="background:#1B4F72">
+          <i class="fas fa-chevron-right text-sm"></i>
+        </button>
+        <a href="#" class="btn-primary py-2 px-5 text-sm">Барлығы <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+      </div>
+    </div>
+
+    <div id="news-container">
+      <!-- News Slide 1 -->
+      <div class="news-slide active reveal">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 rounded-2xl overflow-hidden group cursor-pointer" style="box-shadow:0 8px 32px rgba(27,79,114,0.12)">
+            <div class="news-img rounded-t-2xl relative overflow-hidden" style="height:280px;background:linear-gradient(135deg,#1B4F72,#00A3CC)">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fas fa-newspaper text-white/20 text-8xl"></i>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
+                <span class="tag mb-2" style="background:#E3B448;color:#12344d">Жаңалық</span>
+                <h3 class="text-white font-700 text-lg leading-tight mt-2" style="font-weight:700">Университетте ЖАИ (Жасанды Интеллект) институты ашылды</h3>
+              </div>
+            </div>
+            <div class="bg-white p-5">
+              <p class="text-gray-500 text-sm leading-relaxed">Қорқыт Ата Қызылорда университетінде Жасанды Интеллект институты ресми түрде ашылды. Институт AI агенттері, машиналық оқыту және цифрлық трансформация бағыттарында зерттеу жүргізеді.</p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar-alt"></i> 15 Желтоқсан, 2024</span>
+                <a href="#" class="text-sm font-600" style="color:#00A3CC;font-weight:600">Оқу →</a>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="flex gap-3 bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-md transition-shadow p-3 border border-gray-100">
+              <div class="w-20 h-20 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#E3B448,#c9a030)">
+                <i class="fas fa-award text-white text-2xl"></i>
+              </div>
+              <div>
+                <span class="tag text-xs" style="background:rgba(227,180,72,0.15);color:#c9a030">Марапат</span>
+                <h4 class="font-600 text-sm mt-1 leading-tight" style="color:#1B4F72;font-weight:600">QS Ranking-те жаңа орын алды</h4>
+                <p class="text-gray-400 text-xs mt-1 flex items-center gap-1"><i class="far fa-calendar-alt"></i> 10 Желтоқсан, 2024</p>
+              </div>
+            </div>
+            <div class="flex gap-3 bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-md transition-shadow p-3 border border-gray-100">
+              <div class="w-20 h-20 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#1B4F72,#2471a3)">
+                <i class="fas fa-handshake text-white text-2xl"></i>
+              </div>
+              <div>
+                <span class="tag text-xs" style="background:rgba(27,79,114,0.08);color:#1B4F72">Ынтымақтастық</span>
+                <h4 class="font-600 text-sm mt-1 leading-tight" style="color:#1B4F72;font-weight:600">Erasmus+ жаңа серіктестері анықталды</h4>
+                <p class="text-gray-400 text-xs mt-1 flex items-center gap-1"><i class="far fa-calendar-alt"></i> 5 Желтоқсан, 2024</p>
+              </div>
+            </div>
+            <div class="flex gap-3 bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-md transition-shadow p-3 border border-gray-100">
+              <div class="w-20 h-20 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#00A3CC,#33b5d6)">
+                <i class="fas fa-microscope text-white text-2xl"></i>
+              </div>
+              <div>
+                <span class="tag text-xs" style="background:rgba(0,163,204,0.1);color:#00A3CC">Ғылым</span>
+                <h4 class="font-600 text-sm mt-1 leading-tight" style="color:#1B4F72;font-weight:600">Web of Science-ке 45 мақала жарияланды</h4>
+                <p class="text-gray-400 text-xs mt-1 flex items-center gap-1"><i class="far fa-calendar-alt"></i> 1 Желтоқсан, 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- News Slide 2 -->
+      <div class="news-slide">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 rounded-2xl overflow-hidden group cursor-pointer" style="box-shadow:0 8px 32px rgba(27,79,114,0.12)">
+            <div class="news-img rounded-t-2xl relative overflow-hidden" style="height:280px;background:linear-gradient(135deg,#12344d,#E3B448)">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <i class="fas fa-graduation-cap text-white/20 text-8xl"></i>
+              </div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/70 to-transparent">
+                <span class="tag mb-2" style="background:#00A3CC;color:white">Білім</span>
+                <h3 class="text-white font-700 text-lg leading-tight mt-2" style="font-weight:700">2024-2025 оқу жылының бітіру рәсімі өткізілді</h3>
+              </div>
+            </div>
+            <div class="bg-white p-5">
+              <p class="text-gray-500 text-sm leading-relaxed">Университетте дәстүрлі бітіру рәсімі ұлы тойбастар мен мереке атмосферасында өткізілді. Бұл жылы 2400-ден астам түлек диплом алды.</p>
+              <div class="flex items-center justify-between mt-4">
+                <span class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar-alt"></i> 20 Маусым, 2024</span>
+                <a href="#" class="text-sm font-600" style="color:#00A3CC;font-weight:600">Оқу →</a>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-4">
+            <div class="flex gap-3 bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-md transition-shadow p-3 border border-gray-100">
+              <div class="w-20 h-20 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#1B4F72,#00A3CC)">
+                <i class="fas fa-robot text-white text-2xl"></i>
+              </div>
+              <div>
+                <span class="tag text-xs" style="background:rgba(27,79,114,0.08);color:#1B4F72">ЖАИ</span>
+                <h4 class="font-600 text-sm mt-1 leading-tight" style="color:#1B4F72;font-weight:600">AI-Sana платформасы іске қосылды</h4>
+                <p class="text-gray-400 text-xs mt-1 flex items-center gap-1"><i class="far fa-calendar-alt"></i> 15 Маусым, 2024</p>
+              </div>
+            </div>
+            <div class="flex gap-3 bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-md transition-shadow p-3 border border-gray-100">
+              <div class="w-20 h-20 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#E3B448,#c9a030)">
+                <i class="fas fa-football-ball text-white text-2xl"></i>
+              </div>
+              <div>
+                <span class="tag text-xs" style="background:rgba(227,180,72,0.15);color:#c9a030">Спорт</span>
+                <h4 class="font-600 text-sm mt-1 leading-tight" style="color:#1B4F72;font-weight:600">Студент команда республикалық чемпион</h4>
+                <p class="text-gray-400 text-xs mt-1 flex items-center gap-1"><i class="far fa-calendar-alt"></i> 10 Маусым, 2024</p>
+              </div>
+            </div>
+            <div class="flex gap-3 bg-white rounded-xl overflow-hidden cursor-pointer hover:shadow-md transition-shadow p-3 border border-gray-100">
+              <div class="w-20 h-20 rounded-lg flex-shrink-0 flex items-center justify-center" style="background:linear-gradient(135deg,#00A3CC,#1B4F72)">
+                <i class="fas fa-landmark text-white text-2xl"></i>
+              </div>
+              <div>
+                <span class="tag text-xs" style="background:rgba(0,163,204,0.1);color:#00A3CC">Мәдениет</span>
+                <h4 class="font-600 text-sm mt-1 leading-tight" style="color:#1B4F72;font-weight:600">Наурыз мейрамы кампуста аталып өтті</h4>
+                <p class="text-gray-400 text-xs mt-1 flex items-center gap-1"><i class="far fa-calendar-alt"></i> 22 Наурыз, 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ANNOUNCEMENTS ===== -->
+<section class="py-16 px-4" style="background:#f0f4f8">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-10 flex-wrap gap-4 reveal">
+      <div>
+        <p class="section-label">Ресми мәлімет</p>
+        <h2 class="section-title">Хабарландырулар</h2>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="scrollAnnounce(-1)" class="w-10 h-10 rounded-xl border border-gray-300 flex items-center justify-center hover:border-navy transition-all">
+          <i class="fas fa-chevron-left text-sm text-gray-500"></i>
+        </button>
+        <button onclick="scrollAnnounce(1)" class="w-10 h-10 rounded-xl flex items-center justify-center text-white" style="background:#1B4F72">
+          <i class="fas fa-chevron-right text-sm"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="announce-slider reveal" id="announce-slider">
+      <div class="announce-card">
+        <div class="h-3" style="background:#E3B448"></div>
+        <div class="p-5">
+          <span class="tag text-xs mb-3 block" style="background:rgba(227,180,72,0.15);color:#c9a030">ҰБТ 2025</span>
+          <h4 class="font-600 text-sm leading-snug mb-3" style="color:#1B4F72;font-weight:600">2025 жылғы ҰБТ тіркеу мерзімдері жарияланды</h4>
+          <p class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar"></i> 10 Қаңтар, 2025</p>
+        </div>
+      </div>
+      <div class="announce-card">
+        <div class="h-3" style="background:#00A3CC"></div>
+        <div class="p-5">
+          <span class="tag text-xs mb-3 block" style="background:rgba(0,163,204,0.1);color:#00A3CC">Стипендия</span>
+          <h4 class="font-600 text-sm leading-snug mb-3" style="color:#1B4F72;font-weight:600">Болашақ бағдарламасы конкурсы басталды</h4>
+          <p class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar"></i> 5 Қаңтар, 2025</p>
+        </div>
+      </div>
+      <div class="announce-card">
+        <div class="h-3" style="background:#1B4F72"></div>
+        <div class="p-5">
+          <span class="tag text-xs mb-3 block" style="background:rgba(27,79,114,0.08);color:#1B4F72">Конференция</span>
+          <h4 class="font-600 text-sm leading-snug mb-3" style="color:#1B4F72;font-weight:600">Халықаралық ЖАИ конференциясы – наурыз 2025</h4>
+          <p class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar"></i> 1 Қаңтар, 2025</p>
+        </div>
+      </div>
+      <div class="announce-card">
+        <div class="h-3" style="background:#E3B448"></div>
+        <div class="p-5">
+          <span class="tag text-xs mb-3 block" style="background:rgba(227,180,72,0.15);color:#c9a030">Жатақхана</span>
+          <h4 class="font-600 text-sm leading-snug mb-3" style="color:#1B4F72;font-weight:600">Жатақхана орны өтінімдері қабылдануда</h4>
+          <p class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar"></i> 28 Желтоқсан, 2024</p>
+        </div>
+      </div>
+      <div class="announce-card">
+        <div class="h-3" style="background:#00A3CC"></div>
+        <div class="p-5">
+          <span class="tag text-xs mb-3 block" style="background:rgba(0,163,204,0.1);color:#00A3CC">Платонус</span>
+          <h4 class="font-600 text-sm leading-snug mb-3" style="color:#1B4F72;font-weight:600">Жаңа семестр кестесі Platоnus-та жарияланды</h4>
+          <p class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar"></i> 25 Желтоқсан, 2024</p>
+        </div>
+      </div>
+      <div class="announce-card">
+        <div class="h-3" style="background:#1B4F72"></div>
+        <div class="p-5">
+          <span class="tag text-xs mb-3 block" style="background:rgba(27,79,114,0.08);color:#1B4F72">Ғылым</span>
+          <h4 class="font-600 text-sm leading-snug mb-3" style="color:#1B4F72;font-weight:600">Грант жобалары конкурсы – 2025 жыл</h4>
+          <p class="text-gray-400 text-xs flex items-center gap-1.5"><i class="far fa-calendar"></i> 20 Желтоқсан, 2024</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DIGITAL SERVICES ===== -->
+<section class="py-20 px-4 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <p class="section-label justify-center">Цифрлық платформалар</p>
+      <h2 class="section-title">Цифрлық қызметтер</h2>
+      <p class="text-gray-500 mt-3 text-sm">Студенттер мен оқытушыларға арналған цифрлық экожүйе</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 reveal">
+      <div class="service-card">
+        <div class="service-icon" style="color:#1B4F72"><i class="fas fa-graduation-cap"></i></div>
+        <div class="service-name text-gray-600">Platonus</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#00A3CC"><i class="fas fa-university"></i></div>
+        <div class="service-name text-gray-600">E-Univer</div>
+      </div>
+      <div class="service-card" style="border:2px solid rgba(227,180,72,0.4)">
+        <div class="service-icon" style="color:#E3B448"><i class="fas fa-robot"></i></div>
+        <div class="service-name text-gray-600">AI-Sana</div>
+        <div class="absolute top-2 right-2 text-xs font-700 text-white px-2 py-0.5 rounded-full z-10" style="font-weight:700;background:#E3B448;color:#12344d;font-size:9px">NEW</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#1B4F72"><i class="fas fa-book-open"></i></div>
+        <div class="service-name text-gray-600">MOOK</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#00A3CC"><i class="fas fa-video"></i></div>
+        <div class="service-name text-gray-600">Zoom</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#1B4F72"><i class="fas fa-library"></i></div>
+        <div class="service-name text-gray-600">Электронды кітапхана</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#E3B448"><i class="fas fa-file-invoice"></i></div>
+        <div class="service-name text-gray-600">Антиплагиат</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#00A3CC"><i class="fas fa-user-circle"></i></div>
+        <div class="service-name text-gray-600">Студент кабинеті</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#1B4F72"><i class="fas fa-briefcase"></i></div>
+        <div class="service-name text-gray-600">Жұмысқа орналасу</div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" style="color:#E3B448"><i class="fas fa-comments"></i></div>
+        <div class="service-name text-gray-600">Онлайн кеңес</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PARTNERS ===== -->
+<section class="py-16 px-4" style="background:#f0f4f8">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-10 reveal">
+      <p class="section-label justify-center">Ынтымақтастық</p>
+      <h2 class="section-title">Серіктестер</h2>
+    </div>
+    <div class="overflow-hidden" style="mask-image:linear-gradient(90deg,transparent,black 10%,black 90%,transparent)">
+      <div class="partners-track">
+        <div class="partner-logo">Назарбаев Университет</div>
+        <div class="partner-logo">ЕНУ</div>
+        <div class="partner-logo">КазНУ</div>
+        <div class="partner-logo">Самарқанд ДУ</div>
+        <div class="partner-logo">Erasmus+</div>
+        <div class="partner-logo">ЮНЕСКО</div>
+        <div class="partner-logo">Болон Процесі</div>
+        <div class="partner-logo">КазМұнайГаз</div>
+        <div class="partner-logo">Самрук-Қазына</div>
+        <div class="partner-logo">KAZNEX INVEST</div>
+        <div class="partner-logo">Даму Қоры</div>
+        <div class="partner-logo">KASPIAN UNIV</div>
+        <!-- Duplicate for seamless loop -->
+        <div class="partner-logo">Назарбаев Университет</div>
+        <div class="partner-logo">ЕНУ</div>
+        <div class="partner-logo">КазНУ</div>
+        <div class="partner-logo">Самарқанд ДУ</div>
+        <div class="partner-logo">Erasmus+</div>
+        <div class="partner-logo">ЮНЕСКО</div>
+        <div class="partner-logo">Болон Процесі</div>
+        <div class="partner-logo">КазМұнайГаз</div>
+        <div class="partner-logo">Самрук-Қазына</div>
+        <div class="partner-logo">KAZNEX INVEST</div>
+        <div class="partner-logo">Даму Қоры</div>
+        <div class="partner-logo">KASPIAN UNIV</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="pt-16 pb-8 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#1B4F72,#00A3CC)">
+            <svg viewBox="0 0 40 40" class="w-8 h-8" fill="none">
+              <circle cx="20" cy="20" r="18" stroke="#E3B448" stroke-width="2"/>
+              <path d="M20 6 L20 34 M6 20 L34 20" stroke="white" stroke-width="1.5"/>
+              <path d="M20 6 C20 6 28 14 28 20 C28 26 20 34 20 34 C20 34 12 26 12 20 C12 14 20 6 20 6Z" stroke="white" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div>
+            <div class="text-white font-700 text-base" style="font-family:'Playfair Display',serif;font-weight:700">Қорқыт Ата Университеті</div>
+            <div class="text-xs" style="color:#E3B448;letter-spacing:0.1em">KYZYLORDA · KAZAKHSTAN</div>
+          </div>
+        </div>
+        <p class="text-sm leading-relaxed mb-6" style="color:rgba(255,255,255,0.55)">
+          Қазақстанның оңтүстік өңірінің жетекші жоғары оқу орны. Ғылым, инновация және халықаралық білімнің кешені.
+        </p>
+        <div class="space-y-2 text-sm">
+          <div class="flex items-start gap-2.5" style="color:rgba(255,255,255,0.6)">
+            <i class="fas fa-map-marker-alt mt-0.5 flex-shrink-0" style="color:#E3B448"></i>
+            <span>Қызылорда қ., Жалаңаш ауданы, Айтеке би к-сі, 29А</span>
+          </div>
+          <div class="flex items-center gap-2.5" style="color:rgba(255,255,255,0.6)">
+            <i class="fas fa-phone-alt flex-shrink-0" style="color:#E3B448"></i>
+            <a href="tel:+77242262636" class="hover:text-white transition-colors">+7 (724) 226-26-36</a>
+          </div>
+          <div class="flex items-center gap-2.5" style="color:rgba(255,255,255,0.6)">
+            <i class="fas fa-envelope flex-shrink-0" style="color:#E3B448"></i>
+            <a href="mailto:info@korkyt.kz" class="hover:text-white transition-colors">info@korkyt.kz</a>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm transition-all" style="background:rgba(255,255,255,0.08)"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm transition-all" style="background:rgba(255,255,255,0.08)"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm transition-all" style="background:rgba(255,255,255,0.08)"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm transition-all" style="background:rgba(255,255,255,0.08)"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm transition-all" style="background:rgba(255,255,255,0.08)"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- University -->
+      <div>
+        <h4 class="text-white text-sm font-700 mb-4 pb-2 border-b" style="font-weight:700;border-color:rgba(227,180,72,0.3);color:#E3B448">Университет</h4>
+        <div class="space-y-1">
+          <a href="#" class="footer-link">Тарих және миссия</a>
+          <a href="#" class="footer-link">Басшылық</a>
+          <a href="#" class="footer-link">Ұйымдық құрылым</a>
+          <a href="#" class="footer-link">Сапа менеджменті</a>
+          <a href="#" class="footer-link">Нормативтік база</a>
+          <a href="#" class="footer-link">Вакансиялар</a>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div>
+        <h4 class="text-white text-sm font-700 mb-4 pb-2 border-b" style="font-weight:700;border-color:rgba(227,180,72,0.3);color:#E3B448">Білім беру</h4>
+        <div class="space-y-1">
+          <a href="#" class="footer-link">Бакалавриат</a>
+          <a href="#" class="footer-link">Магистратура</a>
+          <a href="#" class="footer-link">Докторантура (PhD)</a>
+          <a href="#" class="footer-link">Қашықтан оқыту</a>
+          <a href="#" class="footer-link">Халықаралық бағдарламалар</a>
+          <a href="#" class="footer-link">Мамандықтар тізімі</a>
+        </div>
+      </div>
+
+      <!-- Student / Science -->
+      <div>
+        <h4 class="text-white text-sm font-700 mb-4 pb-2 border-b" style="font-weight:700;border-color:rgba(227,180,72,0.3);color:#E3B448">Студенттерге</h4>
+        <div class="space-y-1">
+          <a href="#" class="footer-link">Platonus</a>
+          <a href="#" class="footer-link">Электрондық кітапхана</a>
+          <a href="#" class="footer-link">AI-Sana</a>
+          <a href="#" class="footer-link">Стипендия</a>
+          <a href="#" class="footer-link">Жатақхана</a>
+          <a href="#" class="footer-link">Психологиялық қолдау</a>
+        </div>
+        <h4 class="text-sm font-700 mb-3 mt-6 pb-2 border-b" style="font-weight:700;border-color:rgba(227,180,72,0.3);color:#E3B448">Ғылым</h4>
+        <div class="space-y-1">
+          <a href="#" class="footer-link">Жарияланымдар</a>
+          <a href="#" class="footer-link">Хабаршы журналы</a>
+          <a href="#" class="footer-link">Конференциялар</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t pt-6 flex items-center justify-between flex-wrap gap-4" style="border-color:rgba(255,255,255,0.08)">
+      <p class="text-xs" style="color:rgba(255,255,255,0.4)">© 2025 Қорқыт Ата атындағы Қызылорда Университеті. Барлық құқықтар қорғалған.</p>
+      <div class="flex gap-4">
+        <a href="#" class="text-xs hover:text-white transition-colors" style="color:rgba(255,255,255,0.4)">Жеке деректер саясаты</a>
+        <a href="#" class="text-xs hover:text-white transition-colors" style="color:rgba(255,255,255,0.4)">Пайдалану шарттары</a>
+        <a href="#" class="text-xs hover:text-white transition-colors" style="color:rgba(255,255,255,0.4)">Байланыс</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== MOBILE MENU ===== -->
+<div id="mobile-menu">
+  <div class="flex justify-between items-center mb-8">
+    <span class="text-white font-700 text-lg" style="font-family:'Playfair Display',serif;font-weight:700">Мәзір</span>
+    <button onclick="closeMobileMenu()" class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:rgba(255,255,255,0.1)">
+      <i class="fas fa-times text-white"></i>
+    </button>
+  </div>
+  <div class="space-y-2">
+    <a href="#" class="block text-white/80 py-3 border-b border-white/10 hover:text-white transition-colors">Университет</a>
+    <a href="#" class="block text-white/80 py-3 border-b border-white/10 hover:text-white transition-colors">Білім беру</a>
+    <a href="#" class="block text-white/80 py-3 border-b border-white/10 hover:text-white transition-colors">Ғылым</a>
+    <a href="#" class="block text-white/80 py-3 border-b border-white/10 hover:text-white transition-colors">Студентке</a>
+    <a href="#" class="block text-white/80 py-3 border-b border-white/10 hover:text-white transition-colors">Халықаралық байланыс</a>
+    <a href="#" class="block text-white/80 py-3 border-b border-white/10 hover:text-white transition-colors">Медиа</a>
+    <a href="#" class="block text-white/80 py-3 border-b border-white/10 hover:text-white transition-colors">ТДМ</a>
+  </div>
+  <div class="mt-8">
+    <a href="#admission" class="btn-primary w-full justify-center" onclick="closeMobileMenu()">
+      <i class="fas fa-graduation-cap"></i> Түсуге өтінім
+    </a>
+  </div>
+</div>
+
+<!-- ===== AI ASSISTANT ===== -->
+<div id="ai-assistant">
+  <div class="ai-chat" id="ai-chat">
+    <div class="ai-chat-header">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background:rgba(255,255,255,0.2)">
+        <i class="fas fa-robot text-white text-lg"></i>
+      </div>
+      <div>
+        <div class="text-white font-700 text-sm" style="font-weight:700">AI-Sana Көмекшісі</div>
+        <div class="text-white/70 text-xs flex items-center gap-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block"></span> Онлайн
+        </div>
+      </div>
+      <button onclick="closeChat()" class="ml-auto text-white/60 hover:text-white">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="ai-messages" id="ai-messages">
+      <div class="ai-msg">
+        Сәлем! Мен AI-Sana — Қорқыт Ата университетінің ЖИ-көмекшісімін. 🎓 Сізге қандай мәселеде көмектесе аламын?
+      </div>
+      <div class="flex flex-wrap gap-1 mt-1">
+        <button onclick="quickAsk('Түсу шарттары')" class="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-navy hover:text-navy transition-all" style="font-size:11px">Түсу шарттары</button>
+        <button onclick="quickAsk('Мамандықтар')" class="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-navy hover:text-navy transition-all" style="font-size:11px">Мамандықтар</button>
+        <button onclick="quickAsk('ЖАИ институты')" class="text-xs px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-navy hover:text-navy transition-all" style="font-size:11px">ЖАИ институты</button>
+      </div>
+    </div>
+    <div class="ai-input-row">
+      <input type="text" class="ai-input" id="ai-input" placeholder="Сұрағыңызды жазыңыз..." onkeypress="if(event.key==='Enter')sendMsg()">
+      <button class="ai-send" onclick="sendMsg()"><i class="fas fa-paper-plane text-sm"></i></button>
+    </div>
+  </div>
+
+  <button class="ai-btn" onclick="toggleChat()" title="AI-Sana Көмекшісі">
+    <div class="pulse"></div>
+    <div class="pulse pulse2"></div>
+    <i class="fas fa-robot text-white text-xl relative z-10"></i>
+  </button>
+</div>
+
+<!-- Back to top -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-chevron-up text-navy-dark text-sm" style="color:#12344d"></i>
+</button>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ===== CANVAS HERO =====
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let waves = [];
+let animId;
+
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 3 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.6;
+    this.speedY = (Math.random() - 0.5) * 0.6;
+    this.alpha = Math.random() * 0.6 + 0.1;
+    this.color = Math.random() > 0.6 ? '#E3B448' : Math.random() > 0.5 ? '#00A3CC' : 'rgba(255,255,255,0.8)';
+  }
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.alpha;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+class Wave {
+  constructor(yOffset, amplitude, frequency, speed, color, alpha) {
+    this.yOffset = yOffset;
+    this.amplitude = amplitude;
+    this.frequency = frequency;
+    this.speed = speed;
+    this.color = color;
+    this.alpha = alpha;
+    this.phase = Math.random() * Math.PI * 2;
+  }
+  draw(t) {
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height);
+    for (let x = 0; x <= canvas.width; x += 4) {
+      const y = this.yOffset + Math.sin(x * this.frequency + this.phase + t * this.speed) * this.amplitude
+               + Math.sin(x * this.frequency * 0.5 + t * this.speed * 0.7) * this.amplitude * 0.5;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.lineTo(canvas.width, canvas.height);
+    ctx.lineTo(0, canvas.height);
+    ctx.closePath();
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.alpha;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+function initCanvas() {
+  resizeCanvas();
+  particles = Array.from({ length: 80 }, () => new Particle());
+  waves = [
+    new Wave(canvas.height * 0.7, 30, 0.008, 0.4, 'rgba(0,163,204,0.25)', 0.5),
+    new Wave(canvas.height * 0.75, 25, 0.012, 0.6, 'rgba(27,79,114,0.3)', 0.4),
+    new Wave(canvas.height * 0.8, 20, 0.006, 0.3, 'rgba(227,180,72,0.15)', 0.3),
+    new Wave(canvas.height * 0.85, 15, 0.015, 0.8, 'rgba(0,163,204,0.2)', 0.35),
+  ];
+}
+
+let t = 0;
+function animateCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  t += 0.01;
+
+  // Draw connections
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 100) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+
+  particles.forEach(p => { p.update(); p.draw(); });
+  waves.forEach(w => w.draw(t));
+
+  animId = requestAnimationFrame(animateCanvas);
+}
+
+window.addEventListener('resize', () => { resizeCanvas(); initCanvas(); });
+initCanvas();
+animateCanvas();
+
+// ===== HERO SLIDER =====
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+
+function goToSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+let heroInterval = setInterval(() => {
+  goToSlide((currentSlide + 1) % slides.length);
+}, 5000);
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('main-nav');
+  const backTop = document.getElementById('back-top');
+  if (window.scrollY > 80) {
+    nav.classList.add('scrolled');
+    backTop.classList.add('show');
+  } else {
+    nav.classList.remove('scrolled');
+    backTop.classList.remove('show');
+  }
+});
+
+// ===== SCROLL REVEAL =====
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// ===== COUNTER ANIMATION =====
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 2000;
+  const start = performance.now();
+  function step(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target).toLocaleString() + (progress === 1 ? suffix : '');
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.counted) {
+      e.target.dataset.counted = '1';
+      animateCounter(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-number[data-target]').forEach(el => counterObs.observe(el));
+
+// ===== NEWS SLIDER =====
+let currentNews = 0;
+const newsSlides = document.querySelectorAll('.news-slide');
+
+function prevNews() {
+  newsSlides[currentNews].classList.remove('active');
+  currentNews = (currentNews - 1 + newsSlides.length) % newsSlides.length;
+  newsSlides[currentNews].classList.add('active');
+}
+
+function nextNews() {
+  newsSlides[currentNews].classList.remove('active');
+  currentNews = (currentNews + 1) % newsSlides.length;
+  newsSlides[currentNews].classList.add('active');
+}
+
+// ===== ANNOUNCEMENTS SCROLL =====
+function scrollAnnounce(dir) {
+  const slider = document.getElementById('announce-slider');
+  slider.scrollBy({ left: dir * 260, behavior: 'smooth' });
+}
+
+// ===== LANGUAGE SWITCHER =====
+let currentLang = 'KZ';
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === lang);
+  });
+  document.querySelectorAll('[data-kz]').forEach(el => {
+    const key = 'data-' + lang.toLowerCase();
+    if (el.hasAttribute(key)) {
+      el.innerHTML = el.getAttribute(key);
+    }
+  });
+}
+
+// ===== MOBILE MENU =====
+document.getElementById('mobile-toggle').addEventListener('click', () => {
+  document.getElementById('mobile-menu').classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ===== AI ASSISTANT =====
+let chatOpen = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('ai-chat').classList.toggle('open', chatOpen);
+}
+
+function closeChat() {
+  chatOpen = false;
+  document.getElementById('ai-chat').classList.remove('open');
+}
+
+const aiResponses = {
+  'Түсу шарттары': 'Университетке түсу үшін ҰБТ нәтижелері қажет. Бакалавриат: минимум 50 балл. Грант ие болу үшін — 70+ балл. Өтінімді онлайн беруге болады! 📝',
+  'Мамандықтар': 'Біздің университетте 70-тен астам мамандық бар:\n• Жасанды интеллект\n• Мұнай-газ инженериясы\n• Экономика\n• Педагогика\n• Медицина\nТолық тізімді білім беру бөлімінен табуға болады. 🎓',
+  'ЖАИ институты': 'Жасанды Интеллект Институты — университеттің инновациялық хабы! 🤖\n• AI агенттері\n• Машиналық оқыту\n• Big Data\n• Цифрлық трансформация\nБізбен байланысыңыз: ai@korkyt.kz',
+};
+
+function quickAsk(q) {
+  addMsg(q, 'user');
+  setTimeout(() => {
+    addMsg(aiResponses[q] || 'Бұл мәселе бойынша кеңес алу үшін қабылдау бөліміне хабарласыңыз: +7 (724) 226-26-36', 'bot');
+  }, 800);
+}
+
+function sendMsg() {
+  const input = document.getElementById('ai-input');
+  const text = input.value.trim();
+  if (!text) return;
+  addMsg(text, 'user');
+  input.value = '';
+  setTimeout(() => {
+    const matched = Object.keys(aiResponses).find(k => text.toLowerCase().includes(k.toLowerCase()));
+    addMsg(matched ? aiResponses[matched] : 'Жауап іздеп жатырмын... Толық ақпарат үшін: +7 (724) 226-26-36 немесе info@korkyt.kz 📞', 'bot');
+  }, 1000);
+}
+
+function addMsg(text, type) {
+  const msgs = document.getElementById('ai-messages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg' + (type === 'user' ? ' user' : '');
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+</script>
+</body>
+</html>
