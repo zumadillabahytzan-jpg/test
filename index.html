@@ -130,6 +130,7 @@
         }
         .slider-card {
             flex: 0 0 100%;
+            align-self: flex-start;
         }
         @media(min-width: 768px) {
             .slider-card {
@@ -140,6 +141,13 @@
             .slider-card {
                 flex: 0 0 calc(25% - 18px);
             }
+        }
+        .slider-card-info {
+            padding: 1.5rem;
+        }
+        .slider-card-info p {
+            margin-top: 0.5rem;
+            line-height: 1.5;
         }
 
         .speaker-slider-nav {
@@ -554,7 +562,7 @@
                                 <img src="1.jpg" alt="Н. Байкадамов" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp1-name">Н. Байкадамов</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp1-role">Қорқыт Ата атындағы ҚУ Басқарма Төрағасы-Ректоры</p>
                             </div>
@@ -566,7 +574,7 @@
                                 <img src="2.jpg" alt="Е. Әбіл" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp2-name">Е. Әбіл</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp2-role">Қорқыт Ата атындағы ҚУ Директорлар кеңесінің төрағасы</p>
                             </div>
@@ -578,7 +586,7 @@
                                 <img src="3.jpg" alt="Ж. Курмангазиев" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp3-name">Ж. Курмангазиев</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp3-role">Орталық Азия корпоративтік хатшылар қауымдастығының атқарушы директоры</p>
                             </div>
@@ -590,7 +598,7 @@
                                 <img src="4.jpg" alt="Д. Акшалов" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp4-name">Д. Акшалов</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp4-role">ҚР Атом энергиясы агенттігі Төрағасының кеңесшісі</p>
                             </div>
@@ -602,7 +610,7 @@
                                 <img src="5.jpg" alt="Т. Зиятов" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp5-name">Т. Зиятов</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp5-role">Қазақстандағы Жасанды интеллектіні дамыту қауымдастығының төрағасы</p>
                             </div>
@@ -614,7 +622,7 @@
                                 <img src="6.jpg" alt="М. Садыкова" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp6-name">М. Садыкова</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp6-role">ICFM UK бизнес-тренері</p>
                             </div>
@@ -626,7 +634,7 @@
                                 <img src="7.jpg" alt="С. Бутумбаев" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp7-name">С. Бутумбаев</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp7-role">Platonus платформасының негізін қалаушы</p>
                             </div>
@@ -638,7 +646,7 @@
                                 <img src="8.jpg" alt="А. Шужеева" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp8-name">А. Шужеева</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp8-role">TechnoWomen үкіметтік емес ұйымының Басқарма Төрайымы</p>
                             </div>
@@ -650,7 +658,7 @@
                                 <img src="9.jpg" alt="А. Кусаинова"  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp9-name">А. Кусаинова</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp9-role">HR SKY кәсіби қоғамдастығының негізін қалаушы</p>
                             </div>
@@ -662,7 +670,7 @@
                                 <img src="10.jpg" alt="М. Орынбаев" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp10-name">М. Орынбаев</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp10-role">Л.Н. Гумилев атындағы ЕҰУ корпоративтік хатшысы</p>
                             </div>
@@ -674,7 +682,7 @@
                                 <img src="11.jpg" alt="Ш. Кобдабаева" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp11-name">Ш. Кобдабаева</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp11-role">Корпоративтік басқару және ішкі аудит маманы</p>
                             </div>
@@ -686,9 +694,9 @@
                                 <img src="12.jpg" alt="Ә. Омарқожаева" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp12-name">Ә. Омарқожаева</h3>
-                                <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp12-role">Еуразиялық жүйелік зерттеулер институтының атқарушы директоры</p>
+                                <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp12-role">«Қ. Кулажанов атындағы Қазақ технология және бизнес университеті» АҚ ғылым және коммерциализация бөлімінің басшысы, к.э.н., доцент</p>
                             </div>
                         </div>
 
@@ -698,9 +706,21 @@
                                 <img src="13.jpg" alt="Ж. Смагулова" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                                 <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="slider-card-info">
                                 <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp13-name">Ж. Смагулова</h3>
                                 <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp13-role">Қаржы-инвестициялық аналитик, қаржылық, операциялық, жобалық тәуекелдерді басқару саласындағы сарапшы</p>
+                            </div>
+                        </div>
+
+                        <!-- Спикер 14 -->
+                        <div class="slider-card glassmorphism-dark rounded-2xl overflow-hidden shadow-xl border border-white/10 flex flex-col group hover-lift">
+                            <div class="relative overflow-hidden aspect-[2590/2697]">
+                                <img src="14.jpg" alt="Е. Үмiрзақов" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brandBlue via-transparent to-transparent opacity-60"></div>
+                            </div>
+                            <div class="slider-card-info">
+                                <h3 class="text-xl font-bold text-white group-hover:text-brandGold transition-colors" data-lang-key="sp14-name">Е. Үмiрзақов</h3>
+                                <p class="text-sm text-brandLight/80 mt-2" data-lang-key="sp14-role">«Самruk-Қазына» АҚ «Әлеуметтік өзара әрекеттесу және коммуникациялар орталығы» КММ Бас директоры</p>
                             </div>
                         </div>
                     </div>
@@ -1018,9 +1038,11 @@
                 "sp11-name": "Ш. Кобдабаева",
                 "sp11-role": "Корпоративтік басқару және ішкі аудит маманы",
                 "sp12-name": "Ә. Омарқожаева",
-                "sp12-role": "Еуразиялық жүйелік зерттеулер институтының атқарушы директоры",
+                "sp12-role": "«Қ. Кулажанов атындағы Қазақ технология және бизнес университеті» АҚ ғылым және коммерциализация бөлімінің басшысы, к.э.н., доцент",
                 "sp13-name": "Ж. Смагулова",
-                "sp13-role": "Қаржы-инвестициялық аналитик, қаржылық, операциялық, жобалық тәуекелдерді басқару саласындағы сарапшы"
+                "sp13-role": "Қаржы-инвестициялық аналитик, қаржылық, операциялық, жобалық тәуекелдерді басқару салasındaғы сарапшы",
+                "sp14-name": "Е. Үмiрзақов",
+                "sp14-role": "«Самruk-Қазына» АҚ «Әлеуметтік өзара әрекеттесу және коммуникациялар орталығы» КММ Бас директоры"
             },
             ru: {
                 "nav-about": "Информация",
@@ -1122,9 +1144,11 @@
                 "sp11-name": "Ш. Кобдабаева",
                 "sp11-role": "Эксперт в области корпоративного управления и аудита",
                 "sp12-name": "Ә. Омарқожаева",
-                "sp12-role": "Исполнительный директор ОО «Евразийский институт системных исследований»",
+                "sp12-role": "Руководитель отдела науки и коммерциализации АО «Казахский университет технологии и бизнеса имени К. Кулажанова», к.э.н., доцент",
                 "sp13-name": "Ж. Смагулова",
-                "sp13-role": "Финансовый инвестиционный аналитик, эксперт в области управления финансовыми, операционными, проектными рисками"
+                "sp13-role": "Финансовый инвестиционный аналитик, эксперт в области управления финансовыми, операционными, проектными рисками",
+                "sp14-name": "Е. Умирзаков",
+                "sp14-role": "Генеральный директор ЧУ «Центр социального взаимодействия и коммуникаций», АО «Самрук-Қазына»"
             },
             en: {
                 "nav-about": "About",
@@ -1226,9 +1250,11 @@
                 "sp11-name": "Sholpan Kobdabayeva",
                 "sp11-role": "Specialist in Corporate Governance and Internal Audit",
                 "sp12-name": "Asem Omarkozhayeva",
-                "sp12-role": "Executive Director of the Eurasian Institute of System Research",
+                "sp12-role": "Head of the Department of Science and Commercialization, JSC Kazakh University of Technology and Business named after K. Kulazhanov, PhD (Economics), Associate Professor",
                 "sp13-name": "Zhanar Smagulova",
-                "sp13-role": "Financial investment analyst, expert in financial, operational, and project risk management"
+                "sp13-role": "Financial investment analyst, expert in financial, operational, and project risk management",
+                "sp14-name": "Eldos Umirkazov",
+                "sp14-role": "General Director of the CPI \"Center for Social Interaction and Communications\", JSC Samruk-Kazyna"
             }
         };
 
@@ -1465,7 +1491,7 @@
         const slider = document.getElementById('speakerSlider');
         const dotsContainer = document.getElementById('sliderDots');
         let cardIndex = 0;
-        const totalCards = 13;
+        const totalCards = slider.querySelectorAll('.slider-card').length;
 
         // Определение количества карточек на экране
         function getCardsPerScreen() {
@@ -1476,12 +1502,15 @@
 
         // Обновление позиционирования карусели
         function updateSlider() {
+            const firstCard = slider.querySelector('.slider-card');
+            if (!firstCard) return;
+
             const cardsPerScreen = getCardsPerScreen();
-            const maxIndex = totalCards - cardsPerScreen;
+            const maxIndex = Math.max(0, totalCards - cardsPerScreen);
             if (cardIndex > maxIndex) cardIndex = maxIndex;
             if (cardIndex < 0) cardIndex = 0;
 
-            const cardWidth = slider.querySelector('.slider-card').offsetWidth;
+            const cardWidth = firstCard.offsetWidth;
             const gap = 24; // Tailwind gap-6 = 1.5rem = 24px
             const scrollAmount = cardIndex * (cardWidth + gap);
 
@@ -1493,7 +1522,7 @@
         function initDots() {
             dotsContainer.innerHTML = '';
             const cardsPerScreen = getCardsPerScreen();
-            const dotsCount = totalCards - cardsPerScreen + 1;
+            const dotsCount = Math.max(1, totalCards - cardsPerScreen + 1);
 
             for (let i = 0; i < dotsCount; i++) {
                 const dot = document.createElement('button');
@@ -1519,7 +1548,7 @@
 
         function slideNext() {
             const cardsPerScreen = getCardsPerScreen();
-            const maxIndex = totalCards - cardsPerScreen;
+            const maxIndex = Math.max(0, totalCards - cardsPerScreen);
             if (cardIndex < maxIndex) {
                 cardIndex++;
             } else {
@@ -1530,28 +1559,43 @@
 
         function slidePrev() {
             const cardsPerScreen = getCardsPerScreen();
+            const maxIndex = Math.max(0, totalCards - cardsPerScreen);
             if (cardIndex > 0) {
                 cardIndex--;
             } else {
-                cardIndex = totalCards - cardsPerScreen; // В конец
+                cardIndex = maxIndex; // В конец
             }
             updateSlider();
         }
 
         // Автоматическая прокрутка
-        let autoSlideInterval = setInterval(slideNext, 4500);
+        let autoSlideInterval = null;
+
+        function startAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(slideNext, 4500);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = null;
+        }
+
+        startAutoSlide();
 
         // Остановка автопрокрутки при взаимодействии
         const sliderContainerParent = slider.parentElement.parentElement;
-        sliderContainerParent.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-        sliderContainerParent.addEventListener('mouseleave', () => {
-            autoSlideInterval = setInterval(slideNext, 4500);
-        });
+        sliderContainerParent.addEventListener('mouseenter', stopAutoSlide);
+        sliderContainerParent.addEventListener('mouseleave', startAutoSlide);
 
         // Инициализация карусели
+        let resizeSliderTimer;
         window.addEventListener('resize', () => {
-            initDots();
-            updateSlider();
+            clearTimeout(resizeSliderTimer);
+            resizeSliderTimer = setTimeout(() => {
+                initDots();
+                updateSlider();
+            }, 150);
         });
         setTimeout(() => {
             initDots();
@@ -1564,11 +1608,13 @@
 
         slider.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            stopAutoSlide();
         }, {passive: true});
 
         slider.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
+            startAutoSlide();
         }, {passive: true});
 
         function handleSwipe() {
